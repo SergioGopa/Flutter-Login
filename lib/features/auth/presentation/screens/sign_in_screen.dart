@@ -1,3 +1,4 @@
+import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
 import 'package:eisty/features/auth/presentation/providers/providers.dart';
 import 'package:eisty/features/auth/presentation/widgets/widgets.dart';
 import 'package:eisty/features/shared/presentation/widgets/widgets.dart';
@@ -57,10 +58,25 @@ class _SigninForm extends ConsumerWidget {
     super.key,
   });
 
+  void showSnackBar(BuildContext context, String errorMessage) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(errorMessage))
+    );
+
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textStyles = Theme.of(context).textTheme;
     final signinForm = ref.watch(SigninFormProvider);
+    ref.listen(
+      authProvider,
+      (previous, next) {
+        if (next.errorMessage.isEmpty) return;
+        showSnackBar(context, next.errorMessage);
+      },
+    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -82,9 +98,8 @@ class _SigninForm extends ConsumerWidget {
             icon: Icons.email_rounded,
             onChanged: (value) =>
                 ref.read(SigninFormProvider.notifier).onEmailChanged(value),
-            errorMessage: signinForm.isFormPosted
-                  ?signinForm.email.errorMessage
-                  :null,
+            errorMessage:
+                signinForm.isFormPosted ? signinForm.email.errorMessage : null,
           ),
           const SizedBox(
             height: 20,
@@ -96,8 +111,8 @@ class _SigninForm extends ConsumerWidget {
             onChanged: (value) =>
                 ref.read(SigninFormProvider.notifier).onPasswordChanged(value),
             errorMessage: signinForm.isFormPosted
-                  ? signinForm.password.errorMessage
-                  :null,
+                ? signinForm.password.errorMessage
+                : null,
           ),
           const SizedBox(
             height: 20,
@@ -108,9 +123,10 @@ class _SigninForm extends ConsumerWidget {
             child: CustomFilledButton(
               text: 'Sign In',
               buttonColor: Colors.black,
-              onPressed: () {
-                ref.read(SigninFormProvider.notifier).onFormSubmit();
-              },
+              onPressed: signinForm.isPosting
+                  ? null
+                  : ref.read(SigninFormProvider.notifier).onFormSubmit
+              ,
             ),
           ),
           const SizedBox(

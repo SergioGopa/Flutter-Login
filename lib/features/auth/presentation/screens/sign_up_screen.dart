@@ -1,6 +1,9 @@
+import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
+import 'package:eisty/features/auth/presentation/providers/signup_form_provider.dart';
 import 'package:eisty/features/auth/presentation/widgets/widgets.dart';
 import 'package:eisty/features/shared/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -13,7 +16,7 @@ class SignUpScreen extends StatelessWidget {
     final textStyles = Theme.of(context).textTheme;
 
     return GestureDetector(
-      onTap: () =>FocusManager.instance.primaryFocus?.unfocus(),
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         body: GeometricalBackground(
             child: SingleChildScrollView(
@@ -69,12 +72,27 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
-class _SignupForm extends StatelessWidget {
+class _SignupForm extends ConsumerWidget {
   const _SignupForm({super.key});
 
+  void showSnackBar(BuildContext context, String errorMessage) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(errorMessage)));
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textStyles = Theme.of(context).textTheme;
+    final signupForm = ref.watch(SignupFormProvider);
+
+    ref.listen(
+      authProvider,
+      (previous, next) {
+        if (next.errorMessage.isEmpty) return;
+        showSnackBar(context, next.errorMessage);
+      },
+    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -93,7 +111,8 @@ class _SignupForm extends StatelessWidget {
           CustomTextFormField(
             label: 'Full name',
             keyboardType: TextInputType.emailAddress,
-            onChanged: (p0) {},
+            onChanged: (value) => ref.read(SignupFormProvider.notifier).onNameChanged(value),
+            errorMessage: signupForm.isFormPosted ? signupForm.username.errorMessage:null,
           ),
           const SizedBox(
             height: 30,
@@ -101,7 +120,8 @@ class _SignupForm extends StatelessWidget {
           CustomTextFormField(
             label: 'Email',
             keyboardType: TextInputType.emailAddress,
-            onChanged: (p0) {},
+            onChanged: (value) => ref.read(SignupFormProvider.notifier).onEmailChanged(value),
+            errorMessage: signupForm.isFormPosted ? signupForm.email.errorMessage: null,
           ),
           const SizedBox(
             height: 30,
@@ -109,13 +129,15 @@ class _SignupForm extends StatelessWidget {
           CustomTextFormField(
             label: 'Password',
             obscureText: true,
-            onChanged: (p0) {},
+            onChanged: (value) => ref.read(SignupFormProvider.notifier).onPasswordChanged(value),
+            errorMessage: signupForm.isFormPosted ? signupForm.password.errorMessage: null,
           ),
           const SizedBox(height: 30),
           CustomTextFormField(
             label: 'Repeat Password',
             obscureText: true,
-            onChanged: (p0) {},
+            onChanged: (value) => ref.read(SignupFormProvider.notifier).onPasswordChanged(value),
+            errorMessage: signupForm.isFormPosted ? signupForm.password.errorMessage: null,
           ),
           const SizedBox(
             height: 30,
@@ -126,7 +148,9 @@ class _SignupForm extends StatelessWidget {
             child: CustomFilledButton(
               text: 'Create',
               buttonColor: Colors.black,
-              onPressed: () {},
+              onPressed: signupForm.isPosting
+                  ? null
+                  : ref.read(SignupFormProvider.notifier).onFormSubmit,
             ),
           ),
           const Spacer(

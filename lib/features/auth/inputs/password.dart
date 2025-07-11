@@ -23,7 +23,7 @@ class Password extends FormzInput<String, PasswordError> {
 
     if ( displayError == PasswordError.empty ) return 'Password is required';
     if ( displayError == PasswordError.length ) return 'At least 6 characters';
-    if ( displayError == PasswordError.format ) return 'It has to have capital letters, number, letters';
+    // if ( displayError == PasswordError.format ) return 'It has to have capital letters, number, letters';
 
     return null;
   }
@@ -35,7 +35,7 @@ class Password extends FormzInput<String, PasswordError> {
 
     if ( value.isEmpty || value.trim().isEmpty ) return PasswordError.empty;
     if ( value.length < 6 ) return PasswordError.length;
-    if ( !passwordRegExp.hasMatch(value) ) return PasswordError.format;
+    // if ( !passwordRegExp.hasMatch(value) ) return PasswordError.format;
 
     return null;
   }

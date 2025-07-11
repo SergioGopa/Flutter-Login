@@ -1,14 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:eisty/features/auth/inputs/inputs.dart';
 import 'package:formz/formz.dart';
 
+import 'package:eisty/features/auth/inputs/inputs.dart';
+import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
 
 //!3 -  StateNotifierProvider - se consume afuera
 final SigninFormProvider =
-    StateNotifierProvider.autoDispose<SigninFormNotifier, SigninFormState>((ref) {
-  return SigninFormNotifier();
-});
+    StateNotifierProvider.autoDispose<SigninFormNotifier, SigninFormState>(
+        (ref) {
+  final loginUserCallback = ref.watch(authProvider.notifier).loginUser;
 
+  return SigninFormNotifier(loginUserCallback: loginUserCallback);
+});
 
 //! 1. State del provider
 class SigninFormState {
@@ -55,7 +58,11 @@ class SigninFormState {
 
 //!2. Como implementamos un notifier
 class SigninFormNotifier extends StateNotifier<SigninFormState> {
-  SigninFormNotifier() : super(SigninFormState());
+  final Function(String, String) loginUserCallback;
+
+  SigninFormNotifier({
+    required this.loginUserCallback,
+  }) : super(SigninFormState());
 
   onEmailChanged(String value) {
     final newEmail = Email.dirty(value);
@@ -70,11 +77,16 @@ class SigninFormNotifier extends StateNotifier<SigninFormState> {
         isValid: Formz.validate([newPassword, state.email]));
   }
 
-  onFormSubmit() {
+  onFormSubmit() async {
     _touchEveryField();
 
+    state = state.copyWith(isPosting: true);
+
     if (!state.isValid) return;
-    print(state);
+    
+    await loginUserCallback(state.email.value, state.password.value);
+
+    state = state.copyWith(isPosting: false);
   }
 
   _touchEveryField() {
@@ -88,4 +100,3 @@ class SigninFormNotifier extends StateNotifier<SigninFormState> {
         isValid: Formz.validate([email, password]));
   }
 }
-
