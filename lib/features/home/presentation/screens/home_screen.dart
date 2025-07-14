@@ -1,6 +1,5 @@
 import 'package:eisty/config/router/app_router_notifier.dart';
 import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
-import 'package:eisty/features/shared/providers/key_value_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,13 +19,13 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         actions: [
           IconButton(
               onPressed: () async {
-                //TODO: Delete below line, just for debugging purposes
-                await Future.delayed(const Duration(milliseconds: 500));
+                // //TODO: Delete below line, just for debugging purposes
+                // await Future.delayed(const Duration(milliseconds: 500));
 
                 ref.read(authProvider.notifier).logout();
 
-                //TODO: Delete below line, just for debugging purposes
-                await ref.read(goRouterNotifierProvider).clearOnboarding();
+                // //TODO: Delete below line, just for debugging purposes
+                // await ref.read(goRouterNotifierProvider).clearOnboarding();
               },
               icon: Icon(Icons.exit_to_app))
         ],
