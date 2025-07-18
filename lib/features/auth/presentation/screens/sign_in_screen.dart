@@ -95,7 +95,7 @@ class _SigninForm extends ConsumerWidget {
           CustomTextFormField(
             label: 'Email',
             keyboardType: TextInputType.emailAddress,
-            icon: Icons.email_rounded,
+            prefixicon: Icons.email_rounded,
             onChanged: (value) =>
                 ref.read(SigninFormProvider.notifier).onEmailChanged(value),
             errorMessage:
@@ -106,7 +106,7 @@ class _SigninForm extends ConsumerWidget {
           ),
           CustomTextFormField(
             label: 'Password',
-            icon: Icons.lock,
+            prefixicon: Icons.lock,
             obscureText: true,
             onChanged: (value) =>
                 ref.read(SigninFormProvider.notifier).onPasswordChanged(value),

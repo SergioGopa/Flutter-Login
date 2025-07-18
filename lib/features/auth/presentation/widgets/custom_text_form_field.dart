@@ -10,7 +10,10 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextStyle? style;
   final String? Function(String?)? validator;
-  final IconData? icon;
+  final IconData? prefixicon;
+  final IconData? suffixIcon;
+  final Color? fillColor;
+  final TextStyle? hintStyle;
 
   const CustomTextFormField({
     super.key,
@@ -23,7 +26,10 @@ class CustomTextFormField extends StatelessWidget {
     this.label,
     this.hint,
     this.errorMessage,
-     this.icon,
+    this.prefixicon, 
+    this.suffixIcon, 
+    this.fillColor, 
+    this.hintStyle,
   });
 
   @override
@@ -68,9 +74,12 @@ class CustomTextFormField extends StatelessWidget {
             isDense: true,
             label: label != null ? Text(label!) : null,
             hintText: hint,
+            hintStyle: hintStyle,
+            fillColor: fillColor,
             errorText: errorMessage,
             focusColor: colors.primary,
-            prefixIcon: Icon(icon)
+            prefixIcon: Icon(prefixicon),
+            suffixIcon: Icon(suffixIcon)
             ),
       ),
     );

@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   animate_do: ^4.2.0
+  card_swiper: ^3.0.1
   dio: ^5.8.0+1
   flutter:
     sdk: flutter
@@ -33,3 +34,7 @@ flutter:
     - assets/images/splash/
     - assets/images/onboarding/
     - assets/svgs/
+    - assets/images/menus/
+    - assets/images/topmenu/
+    - assets/images/popular_foods/
+    - assets/images/bestfood/

@@ -1,16 +1,22 @@
-import 'package:eisty/config/router/app_router_notifier.dart';
-import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:eisty/features/auth/presentation/screens/screens.dart';
-import '../../features/home/presentation/screens/screens.dart';
+import 'package:eisty/config/router/app_router_notifier.dart';
+import 'package:eisty/features/auth/auth.dart';
+import 'package:eisty/features/explore/explore.dart';
+import 'package:eisty/features/favorites/favorites.dart';
+import 'package:eisty/features/profile/profile.dart';
+import 'package:eisty/features/today/today.dart';
+import 'package:eisty/features/home/home.dart';
+
 
 final goRouterProvider = Provider(
   (ref) {
     final goRouterNotifier = ref.read(goRouterNotifierProvider);
+    
     return GoRouter(
-      initialLocation: '/splash',
+      //TODO: Put it back to Splash, for now just bypassing signin
+      initialLocation: '/today',
       refreshListenable: goRouterNotifier,
       routes: [
         //*First Screen
@@ -40,11 +46,36 @@ final goRouterProvider = Provider(
           builder: (context, state) => const SplashScreen(),
         ),
 
-        //*Home Screen
-        GoRoute(
-          path: '/home',
-          builder: (context, state) => const HomeScreen(),
-        ),
+        ShellRoute(
+          
+          builder: (context, state, child) {
+            return HomeScreen(child: child,);
+          },
+          routes: [
+            GoRoute(
+              path: '/today',
+              name: 'today',
+              builder: (context, state) => const TodayScreen(),
+              ),
+
+            GoRoute(
+              path: '/explore',
+              name: 'explore',
+              builder: (context, state) => const ExploreScreen(),
+              ),
+
+            GoRoute(
+              path: '/favorites',
+              name: 'favorites',
+              builder: (context, state) => const FavoritesScreen(),
+              ),
+            GoRoute(
+              path: '/profile',
+              name: 'profile',
+              builder: (context, state) => const ProfileScreen(),
+              ),
+            
+          ]),
       ],
       redirect: (context, state) {
         final isGoingTo = state.matchedLocation;
@@ -72,7 +103,7 @@ final goRouterProvider = Provider(
           if (isGoingTo == '/signin' ||
               isGoingTo == '/signup' ||
               isGoingTo == '/splash') {
-                return '/home';
+                return '/today';
               }
         }
 
