@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final dealsSlideshowProvider = Provider<List<Deal>?>((ref) {
   final allDeals = ref.watch(allDealsProvider);
 
-  final featured = allDeals!
+  final featured = allDeals
       .where(
         (deal) => deal.isFeatured,
       )

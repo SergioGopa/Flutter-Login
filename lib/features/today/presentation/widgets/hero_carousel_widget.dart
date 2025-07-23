@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/domain/domain.dart';
 
 class HeroCarouselWidget extends ConsumerWidget {
-  HeroCarouselWidget({
+  const HeroCarouselWidget({
     super.key,
   });
 
@@ -41,11 +41,10 @@ class HeroCarouselWidget extends ConsumerWidget {
 
 class _Slide extends StatelessWidget {
   final Deal deal;
-  // final String imageUrl;
+
   const _Slide({
     super.key,
     required this.deal,
-    // required this.imageUrl,
   });
 
   @override
