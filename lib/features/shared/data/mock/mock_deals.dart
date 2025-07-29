@@ -1,4 +1,4 @@
-import 'package:eisty/features/shared/domain/domain.dart';
+import 'package:eisty/features/shared/domain/entities/deal.dart';
 
 List<Deal>? featureDealsMock = [
     Deal(
@@ -11,7 +11,8 @@ List<Deal>? featureDealsMock = [
       restaurantId: 'r1',
       originalPrice: 120.0,
       discountedPrice: 60.0,
-      isFeatured: true,
+      isFeatured: true, 
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '2',
@@ -23,7 +24,8 @@ List<Deal>? featureDealsMock = [
       restaurantId: 'r2',
       originalPrice: 180.0,
       discountedPrice: 90.0,
-      isFeatured: true,
+      isFeatured: true, 
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '3',
@@ -33,9 +35,10 @@ List<Deal>? featureDealsMock = [
       type: 'Dessert',
       validUntil: DateTime.now().add(Duration(days: 1)),
       restaurantId: 'r3',
-      originalPrice: null,
+      originalPrice: 120.3,
       discountedPrice: 0.0,
-      isFeatured: true,
+      isFeatured: true, 
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '4',
@@ -47,7 +50,8 @@ List<Deal>? featureDealsMock = [
       restaurantId: 'r4',
       originalPrice: 150.0,
       discountedPrice: 99.0,
-      isFeatured: true,
+      isFeatured: true, 
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '5',
@@ -60,6 +64,7 @@ List<Deal>? featureDealsMock = [
       originalPrice: 240.0,
       discountedPrice: 120.0,
       isFeatured: true,
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '6',
@@ -72,6 +77,7 @@ List<Deal>? featureDealsMock = [
       originalPrice: 70.0,
       discountedPrice: 49.0,
       isFeatured: true,
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '7',
@@ -84,6 +90,7 @@ List<Deal>? featureDealsMock = [
       originalPrice: 160.0,
       discountedPrice: 80.0,
       isFeatured: true,
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '8',
@@ -96,6 +103,7 @@ List<Deal>? featureDealsMock = [
       originalPrice: 260.0,
       discountedPrice: 199.0,
       isFeatured: true,
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '9',
@@ -108,6 +116,7 @@ List<Deal>? featureDealsMock = [
       originalPrice: 70.0,
       discountedPrice: 0.0,
       isFeatured: true,
+      validFrom: DateTime(2025),
     ),
     Deal(
       id: '10',
@@ -120,5 +129,6 @@ List<Deal>? featureDealsMock = [
       originalPrice: 200.0,
       discountedPrice: 130.0,
       isFeatured: true,
+      validFrom: DateTime(2025),
     ),
   ];

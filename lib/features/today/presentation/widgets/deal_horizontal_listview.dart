@@ -21,6 +21,7 @@ class DealHorizontalListview extends StatefulWidget {
 
 class _DealHorizontalListviewState extends State<DealHorizontalListview> {
   final scrollController = ScrollController();
+  bool _isRequestInProgress = false;
 
   @override
   void initState() {
@@ -31,9 +32,21 @@ class _DealHorizontalListviewState extends State<DealHorizontalListview> {
 
         if ((scrollController.position.pixels + 200) >=
             scrollController.position.maxScrollExtent) {
+          if (_isRequestInProgress) return;
+
+          _isRequestInProgress = true;
+          widget.loadNextPage!();
+
+          scrollController.animateTo(0,
+              duration: const Duration(
+                milliseconds: 400,
+              ),
+              curve: Curves.easeInOut);
           print('Load next deals');
 
-          widget.loadNextPage!();
+          Future.delayed(const Duration(milliseconds: 500), () {
+            _isRequestInProgress = false;
+          });
         }
       },
     );
@@ -92,7 +105,7 @@ class _Slide extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(
-                "assets/images/bestfood/${deal.imageUrl}",
+                deal.imageUrl,
                 width: 25,
                 height: 150,
                 fit: BoxFit.cover,

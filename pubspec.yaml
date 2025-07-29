@@ -39,3 +39,5 @@ flutter:
     - assets/images/topmenu/
     - assets/images/popular_foods/
     - assets/images/bestfood/
+    - assets/mock/mock_deals.json
+    - assets/mock/mock_restaurants.json

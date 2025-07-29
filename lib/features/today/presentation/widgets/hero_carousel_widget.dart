@@ -1,19 +1,27 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:eisty/features/today/presentation/providers.dart/deals_slideshow_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/domain/domain.dart';
 
 class HeroCarouselWidget extends ConsumerWidget {
+  final List<Deal> deals;
+
   const HeroCarouselWidget({
+    required this.deals,
     super.key,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
-    final featuredDeals = ref.watch(dealsSlideshowProvider);
+
+    if (deals.isEmpty) {
+      return const SizedBox(
+        height: 210,
+        child: Center(child: Text('No featured deals available'),),
+      );
+    }
 
     return SizedBox(
       height: 210,
@@ -26,11 +34,9 @@ class HeroCarouselWidget extends ConsumerWidget {
             margin: const EdgeInsets.only(top: 0),
             builder: DotSwiperPaginationBuilder(
                 activeColor: colors.primary, color: colors.secondary)),
-        itemCount: featuredDeals!.length,
-        
+        itemCount: deals.length,
         itemBuilder: (context, index) {
-          final deal = featuredDeals[index];
-          
+          final deal = deals[index];
 
           return _Slide(deal: deal);
         },
@@ -60,7 +66,7 @@ class _Slide extends StatelessWidget {
         child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
-              "assets/images/bestfood/${deal.imageUrl}",
+              deal.imageUrl,
               width: 25,
               height: 25,
               fit: BoxFit.cover,

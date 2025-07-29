@@ -1,3 +1,3 @@
-export 'package:eisty/features/shared/domain/models/deal.dart';
-export 'package:eisty/features/shared/domain/models/restaurant.dart';
+export 'package:eisty/features/shared/domain/entities/deal.dart';
+export 'package:eisty/features/shared/domain/entities/restaurant.dart';
 
