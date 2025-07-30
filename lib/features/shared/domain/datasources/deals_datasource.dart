@@ -11,6 +11,8 @@ abstract class DealsDatasource {
   
   Future<Deal> getDealByID(String id);
 
+  Future<List<Deal>> getDealsByIds(List<String> ids);
+
   Future<List<Deal>> getDealsByCategory(String category);
   
   Future<List<Deal>> searchDeals(String query);

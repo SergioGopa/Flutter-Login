@@ -24,7 +24,7 @@ class DealNotifier extends StateNotifier<DealState> {
       final deal = await dealsRepository.getDealByID(state.id);
       state = state.copyWith(deal: deal, isLoading: false);
     } catch (e) {
-      state = state.copyWith(isLoading: false, errorMessage: 'Deal not foung');
+      state = state.copyWith(isLoading: false, errorMessage: 'Deal not found');
     }
   }
 }

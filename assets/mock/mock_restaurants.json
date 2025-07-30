@@ -10,7 +10,8 @@
     "longitude": -122.4194,
     "isTopRated": true,
     "isNearby": true,
-    "categories": ["Mexican", "Tacos"]
+    "categories": ["Mexican", "Tacos"],
+    "dealIds": ["d1", "d14"]   
   },
   {
     "id": "r2",
@@ -23,7 +24,8 @@
     "longitude": -122.4112,
     "isTopRated": true,
     "isNearby": false,
-    "categories": ["Japanese", "Sushi"]
+    "categories": ["Japanese", "Sushi"],
+    "dealIds": ["d2", "d8", "d15"]
   },
   {
     "id": "r3",
@@ -36,7 +38,8 @@
     "longitude": -122.4000,
     "isTopRated": false,
     "isNearby": true,
-    "categories": ["Burgers", "Fast Food"]
+    "categories": ["Burgers", "Fast Food"],
+    "dealIds": ["d3", "d9"]
   },
   {
     "id": "r4",
@@ -49,7 +52,8 @@
     "longitude": -122.3950,
     "isTopRated": true,
     "isNearby": false,
-    "categories": ["Italian", "Pasta"]
+    "categories": ["Italian", "Pasta"],
+    "dealIds": ["d4", "d10"]
   },
   {
     "id": "r5",
@@ -62,7 +66,8 @@
     "longitude": -122.4200,
     "isTopRated": false,
     "isNearby": true,
-    "categories": ["Italian", "Pizza"]
+    "categories": ["Italian", "Pizza"],
+    "dealIds": ["d5", "d11"]
   },
   {
     "id": "r6",
@@ -75,7 +80,8 @@
     "longitude": -122.4100,
     "isTopRated": true,
     "isNearby": false,
-    "categories": ["Desserts", "Bakery"]
+    "categories": ["Desserts", "Bakery"],
+    "dealIds": ["d6", "d12"]
   },
   {
     "id": "r7",
@@ -88,6 +94,7 @@
     "longitude": -122.4150,
     "isTopRated": false,
     "isNearby": true,
-    "categories": ["Drinks", "Juice Bar"]
+    "categories": ["Drinks", "Juice Bar"],
+     "dealIds": ["d7", "d13"]
   }
 ]

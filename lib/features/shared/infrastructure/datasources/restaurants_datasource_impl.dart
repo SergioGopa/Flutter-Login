@@ -51,4 +51,40 @@ class RestaurantsDatasourceImpl extends RestaurantsDatasource {
         )
         .toList();
   }
+
+  @override
+  Future<Restaurant> getRestaurantById(String id) async {
+    final restaurants = await _loadRestaurants();
+
+    return restaurants.firstWhere(
+      (restaurant) => restaurant.id == id,
+      orElse: () => throw Exception('Restaurant not found'),
+    );
+  }
+
+  @override
+  Future<List<Restaurant>> getRestaurantsByCategory(String category) async {
+    final restaurants = await _loadRestaurants();
+
+    return restaurants
+        .where(
+          (restaurant) => restaurant.categories.contains(category),
+        )
+        .toList();
+  }
+
+  @override
+  Future<List<Restaurant>> getRestaurantsByPage(
+      {int limit = 10, int offset = 0}) async {
+    final restaurants = await _loadRestaurants();
+
+    if (offset >= restaurants.length) {
+      return [];
+    }
+
+    final end = (offset + limit > restaurants.length)
+        ? restaurants.length
+        : offset + limit;
+    return restaurants.sublist(offset, end);
+  }
 }

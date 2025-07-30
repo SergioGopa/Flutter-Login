@@ -7,6 +7,7 @@ class Restaurant {
   final String imageUrl;
   final double latitude;
   final double longitude;
+  final List<String> dealIds;
 
   // Categorization / Filtering
   final bool isTopRated; // for "Top Rated Restaurants"
@@ -14,6 +15,7 @@ class Restaurant {
   final List<String> categories; // e.g. ["Mexican", "Fast Food"]
 
   Restaurant({
+    required this.dealIds,
     required this.id,
     required this.name,
     required this.address,
@@ -36,6 +38,7 @@ class Restaurant {
     String? imageUrl,
     double? latitude,
     double? longitude,
+    List<String>? dealIds,
   }) {
     return Restaurant(
         id: id ?? this.id,
@@ -45,7 +48,9 @@ class Restaurant {
         reviewsCount: reviewsCount ?? this.reviewsCount,
         imageUrl: imageUrl ?? this.imageUrl,
         latitude: latitude ?? this.latitude,
-        longitude: longitude ?? this.longitude);
+        longitude: longitude ?? this.longitude,
+        dealIds: dealIds ?? this.dealIds,
+        );
   }
 
   factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
@@ -59,7 +64,8 @@ class Restaurant {
         longitude: (json['longitude'] as num).toDouble(),
         isTopRated: json['isTopRated'] ?? false,
         isNearby: json['isNearby'] ?? false,
-        categories: List<String>.from(json['categories'] ?? []),
+        categories: List<String>.from(json['categories'] ?? []), 
+        dealIds: List<String>.from(json['dealIds'] ?? []),
       );
 
   Map<String, dynamic> toJson() => {
@@ -74,5 +80,6 @@ class Restaurant {
         'isTopRated': isTopRated,
         'isNearby': isNearby,
         'categories': categories,
+        'dealIds':dealIds,
       };
 }

@@ -42,4 +42,9 @@ class DealsRepositoryImpl extends DealsRepository {
   Future<List<Deal>> getDealsByPage({int limit = 10, int offset = 0}) {
     return datasource.getDealsByPage(limit: limit, offset: offset);
   }
+
+  @override
+  Future<List<Deal>> getDealsByIds(List<String> ids) {
+    return datasource.getDealsByIds(ids);
+  }
 }

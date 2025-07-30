@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "d1",
     "title": "2x1 Tacos al Pastor",
     "description": "Only from 5 PM to 8 PM — dine-in only.",
     "imageUrl": "assets/images/bestfood/ic_best_food_1.jpeg",
@@ -18,7 +18,7 @@
     "reviewsCount": 45
   },
   {
-    "id": "2",
+    "id": "d2",
     "title": "50% Off Sushi Rolls",
     "description": "Valid on all sushi rolls. Takeout only.",
     "imageUrl": "assets/images/bestfood/ic_best_food_2.jpeg",
@@ -36,7 +36,7 @@
     "reviewsCount": 30
   },
   {
-    "id": "3",
+    "id": "d3",
     "title": "Free Soft Drink with Any Burger",
     "description": "One drink per burger order.",
     "imageUrl": "assets/images/popular_foods/ic_popular_food_1.png",
@@ -54,7 +54,7 @@
     "reviewsCount": 18
   },
   {
-    "id": "4",
+    "id": "d4",
     "title": "20% Off Fresh Pasta",
     "description": "Available all day.",
     "imageUrl": "assets/images/bestfood/ic_best_food_3.jpeg",
@@ -72,7 +72,7 @@
     "reviewsCount": 22
   },
   {
-    "id": "5",
+    "id": "d5",
     "title": "Buy One Pizza Get One Free",
     "description": "Valid on any large pizza.",
     "imageUrl": "assets/images/popular_foods/ic_popular_food_2.png",
@@ -90,7 +90,7 @@
     "reviewsCount": 28
   },
   {
-    "id": "6",
+    "id": "d6",
     "title": "Free Cupcake with Dessert Purchase",
     "description": "One cupcake per dessert order.",
     "imageUrl": "assets/images/bestfood/ic_best_food_4.jpeg",
@@ -108,7 +108,7 @@
     "reviewsCount": 15
   },
   {
-    "id": "7",
+    "id": "d7",
     "title": "Happy Hour - 2 for 1 Drinks",
     "description": "From 5 PM to 7 PM only.",
     "imageUrl": "assets/images/bestfood/ic_best_food_5.jpeg",
@@ -126,7 +126,7 @@
     "reviewsCount": 12
   },
   {
-    "id": "8",
+    "id": "d8",
     "title": "All You Can Eat Sushi",
     "description": "Available weekends only.",
     "imageUrl": "assets/images/bestfood/ic_best_food_6.jpeg",
@@ -144,7 +144,7 @@
     "reviewsCount": 60
   },
   {
-    "id": "9",
+    "id": "d9",
     "title": "Cheeseburger Combo Meal",
     "description": "Includes fries and a drink.",
     "imageUrl": "assets/images/popular_foods/ic_popular_food_3.png",
@@ -162,7 +162,7 @@
     "reviewsCount": 40
   },
   {
-    "id": "10",
+    "id": "d10",
     "title": "Family Pasta Pack",
     "description": "Feeds up to 4 people.",
     "imageUrl": "assets/images/bestfood/ic_best_food_7.jpeg",
@@ -180,7 +180,7 @@
     "reviewsCount": 25
   },
   {
-    "id": "11",
+    "id": "d11",
     "title": "Large Pizza + 2 Drinks",
     "description": "Perfect for two.",
     "imageUrl": "assets/images/popular_foods/ic_popular_food_4.png",
@@ -198,7 +198,7 @@
     "reviewsCount": 20
   },
   {
-    "id": "12",
+    "id": "d12",
     "title": "Ice Cream Sundae Special",
     "description": "2 for the price of 1.",
     "imageUrl": "assets/images/bestfood/ic_best_food_8.jpeg",
@@ -216,7 +216,7 @@
     "reviewsCount": 32
   },
   {
-    "id": "13",
+    "id": "d13",
     "title": "Fruit Juice Refill Deal",
     "description": "Free refill with any purchase.",
     "imageUrl": "assets/images/bestfood/ic_best_food_9.jpeg",
@@ -234,7 +234,7 @@
     "reviewsCount": 10
   },
   {
-    "id": "14",
+    "id": "d14",
     "title": "All Day Taco Fiesta",
     "description": "Unlimited tacos all day long.",
     "imageUrl": "assets/images/bestfood/ic_best_food_10.jpeg",
@@ -252,7 +252,7 @@
     "reviewsCount": 55
   },
   {
-    "id": "15",
+    "id": "d15",
     "title": "Sushi Boat Special",
     "description": "Includes 5 premium rolls.",
     "imageUrl": "assets/images/popular_foods/ic_popular_food_5.png",

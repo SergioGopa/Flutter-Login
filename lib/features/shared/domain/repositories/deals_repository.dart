@@ -13,6 +13,8 @@ abstract class DealsRepository {
 
   Future<Deal> getDealByID(String id);
 
+  Future<List<Deal>> getDealsByIds(List<String> ids);
+
   Future<List<Deal>> getDealsByPage({int limit = 10, int offset = 0});
 
 }

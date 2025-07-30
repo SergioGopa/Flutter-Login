@@ -86,4 +86,14 @@ class DealsDatasourceImpl extends DealsDatasource {
     final end = (offset + limit > deals.length) ? deals.length : offset + limit;
     return deals.sublist(offset, end);
   }
+
+  @override
+  Future<List<Deal>> getDealsByIds(List<String> ids) async {
+    final deals = await _loadDeals();
+    return deals
+        .where(
+          (deal) => ids.contains(deal.id),
+        )
+        .toList();
+  }
 }

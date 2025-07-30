@@ -1,16 +1,16 @@
 import 'package:eisty/features/shared/domain/domain.dart';
 import 'package:flutter/material.dart';
 
-class DealHorizontalListview extends StatefulWidget {
-  final List<Deal> deals;
+class RestaurantHorizontalListview extends StatefulWidget {
+  final List<Restaurant> restaurants;
   final String? title;
   final String? subTitle;
   final VoidCallback? loadNextPage;
   final bool isLastPage;
 
-  const DealHorizontalListview({
+  const RestaurantHorizontalListview({
     super.key,
-    required this.deals,
+    required this.restaurants,
     this.title,
     this.subTitle,
     this.loadNextPage,
@@ -18,10 +18,10 @@ class DealHorizontalListview extends StatefulWidget {
   });
 
   @override
-  State<DealHorizontalListview> createState() => _DealHorizontalListviewState();
+  State<RestaurantHorizontalListview> createState() => _RestaurantHorizontalListviewState();
 }
 
-class _DealHorizontalListviewState extends State<DealHorizontalListview> {
+class _RestaurantHorizontalListviewState extends State<RestaurantHorizontalListview> {
   final scrollController = ScrollController();
   bool _isRequestInProgress = false;
 
@@ -81,9 +81,9 @@ class _DealHorizontalListviewState extends State<DealHorizontalListview> {
             controller: scrollController,
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            itemCount: widget.deals.length,
+            itemCount: widget.restaurants.length,
             itemBuilder: (context, index) {
-              return _Slide(deal: widget.deals[index]);
+              return _Slide(restaurant: widget.restaurants[index]);
             },
           ))
         ],
@@ -93,9 +93,9 @@ class _DealHorizontalListviewState extends State<DealHorizontalListview> {
 }
 
 class _Slide extends StatelessWidget {
-  final Deal deal;
+  final Restaurant restaurant;
 
-  const _Slide({required this.deal});
+  const _Slide({required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +112,7 @@ class _Slide extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(
-                deal.imageUrl,
+                restaurant.imageUrl,
                 width: 25,
                 height: 150,
                 fit: BoxFit.cover,
@@ -127,7 +127,7 @@ class _Slide extends StatelessWidget {
           SizedBox(
             width: 150,
             child: Text(
-              deal.title,
+              restaurant.name,
               maxLines: 2,
               style: textStyles.titleSmall,
             ),
@@ -135,17 +135,20 @@ class _Slide extends StatelessWidget {
 
           Row(
             children: [
+              Icon(Icons.star_half_outlined, color: Colors.yellow.shade800,),
+              
               Text(
-                '\$${deal.originalPrice}',
-                style: TextStyle(decoration: TextDecoration.lineThrough),
+                '${restaurant.rating}',
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
               SizedBox(
                 width: 30,
               ),
+              Icon(Icons.reviews, color: Colors.yellow.shade800,),
               Text(
-                '\$${deal.discountedPrice}',
+                '${restaurant.reviewsCount}',
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
             ],
           )
