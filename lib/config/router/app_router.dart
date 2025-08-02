@@ -1,3 +1,4 @@
+import 'package:eisty/features/catalog/deals/presentation/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,14 +10,12 @@ import 'package:eisty/features/profile/profile.dart';
 import 'package:eisty/features/today/today.dart';
 import 'package:eisty/features/home/home.dart';
 
-
 final goRouterProvider = Provider(
   (ref) {
     final goRouterNotifier = ref.read(goRouterNotifierProvider);
-    
+
     return GoRouter(
-      //TODO: Put it back to Splash, for now just bypassing signin
-      initialLocation: '/today',
+      initialLocation: '/',
       refreshListenable: goRouterNotifier,
       routes: [
         //*First Screen
@@ -42,40 +41,43 @@ final goRouterProvider = Provider(
         ),
 
         GoRoute(
-          path: '/loading',
-          builder: (context, state) => const SplashScreen(),
-        ),
-
-        ShellRoute(
-          
-          builder: (context, state, child) {
-            return HomeScreen(child: child,);
-          },
+          path: '/',
+          name: HomeScreen.name,
+          builder: (context, state) => HomeScreen(),
           routes: [
             GoRoute(
-              path: '/today',
-              name: 'today',
-              builder: (context, state) => const TodayScreen(),
+                path: '/today',
+                name: 'today',
+                builder: (context, state) => const TodayScreen(),
+              ),
+              GoRoute(
+                path: '/explore',
+                name: 'explore',
+                builder: (context, state) => const ExploreScreen(),
+              ),
+              GoRoute(
+                path: '/favorites',
+                name: 'favorites',
+                builder: (context, state) => const FavoritesScreen(),
+              ),
+              GoRoute(
+                path: '/profile',
+                name: 'profile',
+                builder: (context, state) => const ProfileScreen(),
               ),
 
-            GoRoute(
-              path: '/explore',
-              name: 'explore',
-              builder: (context, state) => const ExploreScreen(),
+              GoRoute(
+                path: '/deals/:id',
+                name: 'deal-detail',
+                builder: (context, state) {
+                  final id = state.pathParameters['id']??'no-id';
+                  return DealDetailScreen(
+                    dealId: id,
+                  );
+                },
               ),
-
-            GoRoute(
-              path: '/favorites',
-              name: 'favorites',
-              builder: (context, state) => const FavoritesScreen(),
-              ),
-            GoRoute(
-              path: '/profile',
-              name: 'profile',
-              builder: (context, state) => const ProfileScreen(),
-              ),
-            
-          ]),
+            ]
+          ),      
       ],
       redirect: (context, state) {
         final isGoingTo = state.matchedLocation;
@@ -103,8 +105,8 @@ final goRouterProvider = Provider(
           if (isGoingTo == '/signin' ||
               isGoingTo == '/signup' ||
               isGoingTo == '/splash') {
-                return '/today';
-              }
+            return '/';
+          }
         }
 
         return null;
@@ -112,3 +114,4 @@ final goRouterProvider = Provider(
     );
   },
 );
+

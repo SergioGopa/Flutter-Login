@@ -1,5 +1,7 @@
-import 'package:eisty/features/shared/domain/domain.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../catalog/restaurants/domain/domain.dart';
 
 class RestaurantHorizontalListview extends StatefulWidget {
   final List<Restaurant> restaurants;

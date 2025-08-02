@@ -1,5 +1,8 @@
-import 'package:eisty/features/shared/domain/domain.dart';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../catalog/deals/domain/entities/deal.dart';
 
 class DealHorizontalListview extends StatefulWidget {
   final List<Deal> deals;
@@ -8,14 +11,13 @@ class DealHorizontalListview extends StatefulWidget {
   final VoidCallback? loadNextPage;
   final bool isLastPage;
 
-  const DealHorizontalListview({
-    super.key,
-    required this.deals,
-    this.title,
-    this.subTitle,
-    this.loadNextPage,
-    this.isLastPage = false
-  });
+  const DealHorizontalListview(
+      {super.key,
+      required this.deals,
+      this.title,
+      this.subTitle,
+      this.loadNextPage,
+      this.isLastPage = false});
 
   @override
   State<DealHorizontalListview> createState() => _DealHorizontalListviewState();
@@ -34,7 +36,6 @@ class _DealHorizontalListviewState extends State<DealHorizontalListview> {
 
         if ((scrollController.position.pixels + 200) >=
             scrollController.position.maxScrollExtent) {
-              
           if (_isRequestInProgress) return;
 
           _isRequestInProgress = true;
@@ -42,13 +43,12 @@ class _DealHorizontalListviewState extends State<DealHorizontalListview> {
 
           if (widget.isLastPage) {
             scrollController.animateTo(0,
-              duration: const Duration(
-                milliseconds: 400,
-              ),
-              curve: Curves.easeInOut);  
+                duration: const Duration(
+                  milliseconds: 400,
+                ),
+                curve: Curves.easeInOut);
           }
 
-          
           print('Load next deals');
 
           Future.delayed(const Duration(milliseconds: 500), () {
@@ -111,11 +111,16 @@ class _Slide extends StatelessWidget {
             width: 120,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                deal.imageUrl,
-                width: 25,
-                height: 150,
-                fit: BoxFit.cover,
+              child: GestureDetector(
+                onTap: () {
+                  context.push('/deals/${deal.id}');
+                },
+                child: Image.asset(
+                  deal.imageUrl,
+                  width: 25,
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),

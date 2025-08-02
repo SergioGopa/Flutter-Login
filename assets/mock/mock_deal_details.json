@@ -1,0 +1,1014 @@
+[
+  {
+    "id": "d1",
+    "title": "Sample Deal 1",
+    "description": "This is a detailed description for Sample Deal 1.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_2.jpeg",
+      "assets/images/popular_foods/ic_popular_food_2.png"
+    ],
+    "price": 55.0,
+    "originalPrice": 105.0,
+    "promoTag": "11% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "71% Likes (31)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": false,
+    "allergens": [
+      "Nuts"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d2",
+      "d3"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d4"
+    ],
+    "restaurantId": "r1",
+    "rating": 4.1,
+    "reviewsCount": 21,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 1.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 1.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 1.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d2",
+    "title": "Sample Deal 2",
+    "description": "This is a detailed description for Sample Deal 2.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_3.jpeg",
+      "assets/images/popular_foods/ic_popular_food_3.png"
+    ],
+    "price": 60.0,
+    "originalPrice": 110.0,
+    "promoTag": "12% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "72% Likes (32)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": true,
+    "allergens": [
+      "Gluten",
+      "Dairy"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d3",
+      "d4"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d5"
+    ],
+    "restaurantId": "r2",
+    "rating": 4.2,
+    "reviewsCount": 22,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 2.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 2.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 2.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d3",
+    "title": "Sample Deal 3",
+    "description": "This is a detailed description for Sample Deal 3.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_4.jpeg",
+      "assets/images/popular_foods/ic_popular_food_4.png"
+    ],
+    "price": 65.0,
+    "originalPrice": 115.0,
+    "promoTag": "13% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "73% Likes (33)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": false,
+    "allergens": [
+      "Nuts"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d4",
+      "d5"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d6"
+    ],
+    "restaurantId": "r3",
+    "rating": 4.3,
+    "reviewsCount": 23,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 3.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 3.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 3.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d4",
+    "title": "Sample Deal 4",
+    "description": "This is a detailed description for Sample Deal 4.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_5.jpeg",
+      "assets/images/popular_foods/ic_popular_food_5.png"
+    ],
+    "price": 70.0,
+    "originalPrice": 120.0,
+    "promoTag": "14% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "74% Likes (34)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": true,
+    "allergens": [
+      "Gluten",
+      "Dairy"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d5",
+      "d6"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d7"
+    ],
+    "restaurantId": "r4",
+    "rating": 4.4,
+    "reviewsCount": 24,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 4.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 4.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 4.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d5",
+    "title": "Sample Deal 5",
+    "description": "This is a detailed description for Sample Deal 5.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_6.jpeg",
+      "assets/images/popular_foods/ic_popular_food_6.png"
+    ],
+    "price": 75.0,
+    "originalPrice": 125.0,
+    "promoTag": "15% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "75% Likes (35)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": false,
+    "allergens": [
+      "Nuts"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d6",
+      "d7"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d8"
+    ],
+    "restaurantId": "r5",
+    "rating": 4.0,
+    "reviewsCount": 25,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 5.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 5.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 5.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d6",
+    "title": "Sample Deal 6",
+    "description": "This is a detailed description for Sample Deal 6.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_7.jpeg",
+      "assets/images/popular_foods/ic_popular_food_1.png"
+    ],
+    "price": 80.0,
+    "originalPrice": 130.0,
+    "promoTag": "16% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "76% Likes (36)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": true,
+    "allergens": [
+      "Gluten",
+      "Dairy"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d7",
+      "d8"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d9"
+    ],
+    "restaurantId": "r6",
+    "rating": 4.1,
+    "reviewsCount": 26,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 6.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 6.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 6.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d7",
+    "title": "Sample Deal 7",
+    "description": "This is a detailed description for Sample Deal 7.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_8.jpeg",
+      "assets/images/popular_foods/ic_popular_food_2.png"
+    ],
+    "price": 85.0,
+    "originalPrice": 135.0,
+    "promoTag": "17% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "77% Likes (37)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": false,
+    "allergens": [
+      "Nuts"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d8",
+      "d9"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d10"
+    ],
+    "restaurantId": "r7",
+    "rating": 4.2,
+    "reviewsCount": 27,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 7.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 7.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 7.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d8",
+    "title": "Sample Deal 8",
+    "description": "This is a detailed description for Sample Deal 8.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_9.jpeg",
+      "assets/images/popular_foods/ic_popular_food_3.png"
+    ],
+    "price": 90.0,
+    "originalPrice": 140.0,
+    "promoTag": "18% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "78% Likes (38)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": true,
+    "allergens": [
+      "Gluten",
+      "Dairy"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d9",
+      "d10"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d11"
+    ],
+    "restaurantId": "r1",
+    "rating": 4.3,
+    "reviewsCount": 28,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 8.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 8.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 8.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d9",
+    "title": "Sample Deal 9",
+    "description": "This is a detailed description for Sample Deal 9.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_10.jpeg",
+      "assets/images/popular_foods/ic_popular_food_4.png"
+    ],
+    "price": 95.0,
+    "originalPrice": 145.0,
+    "promoTag": "19% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "79% Likes (39)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": false,
+    "allergens": [
+      "Nuts"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d10",
+      "d11"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d12"
+    ],
+    "restaurantId": "r2",
+    "rating": 4.4,
+    "reviewsCount": 29,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 9.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 9.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 9.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d10",
+    "title": "Sample Deal 10",
+    "description": "This is a detailed description for Sample Deal 10.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_1.jpeg",
+      "assets/images/popular_foods/ic_popular_food_5.png"
+    ],
+    "price": 100.0,
+    "originalPrice": 150.0,
+    "promoTag": "20% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "80% Likes (40)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": true,
+    "allergens": [
+      "Gluten",
+      "Dairy"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d11",
+      "d12"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d13"
+    ],
+    "restaurantId": "r3",
+    "rating": 4.0,
+    "reviewsCount": 30,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 10.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 10.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 10.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d11",
+    "title": "Sample Deal 11",
+    "description": "This is a detailed description for Sample Deal 11.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_2.jpeg",
+      "assets/images/popular_foods/ic_popular_food_6.png"
+    ],
+    "price": 105.0,
+    "originalPrice": 155.0,
+    "promoTag": "21% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "81% Likes (41)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": false,
+    "allergens": [
+      "Nuts"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d12",
+      "d13"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d14"
+    ],
+    "restaurantId": "r4",
+    "rating": 4.1,
+    "reviewsCount": 31,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 11.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 11.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 11.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d12",
+    "title": "Sample Deal 12",
+    "description": "This is a detailed description for Sample Deal 12.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_3.jpeg",
+      "assets/images/popular_foods/ic_popular_food_1.png"
+    ],
+    "price": 110.0,
+    "originalPrice": 160.0,
+    "promoTag": "22% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "82% Likes (42)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": true,
+    "allergens": [
+      "Gluten",
+      "Dairy"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d13",
+      "d14"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d15"
+    ],
+    "restaurantId": "r5",
+    "rating": 4.2,
+    "reviewsCount": 32,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 12.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 12.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 12.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d13",
+    "title": "Sample Deal 13",
+    "description": "This is a detailed description for Sample Deal 13.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_4.jpeg",
+      "assets/images/popular_foods/ic_popular_food_2.png"
+    ],
+    "price": 115.0,
+    "originalPrice": 165.0,
+    "promoTag": "23% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "83% Likes (43)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": false,
+    "allergens": [
+      "Nuts"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d14",
+      "d15"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d1"
+    ],
+    "restaurantId": "r6",
+    "rating": 4.3,
+    "reviewsCount": 33,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 13.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 13.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 13.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d14",
+    "title": "Sample Deal 14",
+    "description": "This is a detailed description for Sample Deal 14.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_5.jpeg",
+      "assets/images/popular_foods/ic_popular_food_3.png"
+    ],
+    "price": 120.0,
+    "originalPrice": 170.0,
+    "promoTag": "24% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "84% Likes (44)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": true,
+    "allergens": [
+      "Gluten",
+      "Dairy"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d15",
+      "d1"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d2"
+    ],
+    "restaurantId": "r7",
+    "rating": 4.4,
+    "reviewsCount": 34,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 14.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 14.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 14.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "d15",
+    "title": "Sample Deal 15",
+    "description": "This is a detailed description for Sample Deal 15.",
+    "imageUrls": [
+      "assets/images/bestfood/ic_best_food_6.jpeg",
+      "assets/images/popular_foods/ic_popular_food_4.png"
+    ],
+    "price": 125.0,
+    "originalPrice": 175.0,
+    "promoTag": "25% OFF",
+    "tags": [
+      "#1 Most Liked",
+      "85% Likes (45)",
+      "Ordered before"
+    ],
+    "isPreviouslyOrdered": false,
+    "allergens": [
+      "Nuts"
+    ],
+    "options": [
+      {
+        "title": "Choose Size",
+        "isRequired": true,
+        "options": [
+          {
+            "name": "Small",
+            "priceModifier": 0.0
+          },
+          {
+            "name": "Large",
+            "priceModifier": 20.0
+          }
+        ]
+      }
+    ],
+    "relatedDealIds": [
+      "d1",
+      "d2"
+    ],
+    "frequentlyBoughtTogetherIds": [
+      "d3"
+    ],
+    "restaurantId": "r1",
+    "rating": 4.0,
+    "reviewsCount": 35,
+    "reviews": [
+      {
+        "user": "User 1",
+        "comment": "Review 1 for deal 15.",
+        "rating": 2,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 2",
+        "comment": "Review 2 for deal 15.",
+        "rating": 3,
+        "date": "2025-07-20T18:00:00Z"
+      },
+      {
+        "user": "User 3",
+        "comment": "Review 3 for deal 15.",
+        "rating": 4,
+        "date": "2025-07-20T18:00:00Z"
+      }
+    ]
+  }
+]

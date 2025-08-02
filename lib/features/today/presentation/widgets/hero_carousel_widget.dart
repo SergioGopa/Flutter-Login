@@ -2,7 +2,9 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../shared/domain/domain.dart';
+import '../../../catalog/deals/domain/entities/deal.dart';
+
+
 
 class HeroCarouselWidget extends ConsumerWidget {
   final List<Deal> deals;
