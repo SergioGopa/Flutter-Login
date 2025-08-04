@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../catalog/deals/domain/entities/deal.dart';
+import '../../domain/entities/deal.dart';
 
 class DealHorizontalListview extends StatefulWidget {
   final List<Deal> deals;

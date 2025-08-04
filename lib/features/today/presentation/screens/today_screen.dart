@@ -1,9 +1,11 @@
-import 'package:eisty/features/today/presentation/widgets/deal_horizontal_listview.dart';
+import 'package:eisty/features/catalog/deals/presentation/widgets/deal_horizontal_listview.dart';
+import 'package:eisty/features/catalog/restaurants/presentation/widgets/widgets.dart';
 import 'package:eisty/features/today/today.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../catalog/deals/presentation/providers/providers.dart';
+import '../../../catalog/deals/presentation/widgets/widgets.dart';
 import '../../../catalog/restaurants/presentation/providers/providers.dart';
 
 class TodayScreen extends ConsumerStatefulWidget {

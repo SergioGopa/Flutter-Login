@@ -94,19 +94,13 @@ class DealDetails extends Equatable {
       reviewsCount: json['reviewsCount'],
       tags: List<String>.from(json['tags'] ?? []),
       isPreviouslyOrdered: json['isPreviouslyOrdered'] ?? false,
-      options: (json['options'] as List<dynamic>?)
-              ?.map((e) => OptionGroup.fromJson(e))
-              .toList() ??
-          [],
-      reviews: (json['reviews'] as List<dynamic>?)
-              ?.map((e) => Review.fromJson(e))
-              .toList() ??
-          [],
-      relatedDealIds: List<String>.from(json['relatedDealIds'] ?? []),
+      options: (json['options'] as List<dynamic>).map((e) => OptionGroup.fromJson(e)).toList(),
+      reviews: (json['reviews'] as List<dynamic>).map((e) => Review.fromJson(e)).toList(),
+      relatedDealIds: List<String>.from(json['relatedDealIds']),
       frequentlyBoughtTogetherIds:
-          List<String>.from(json['frequentlyBoughtTogetherIds'] ?? []),
+          List<String>.from(json['frequentlyBoughtTogetherIds']),
       restaurantId: json['restaurantId'],
-      allergens: json['allergens'],
+      allergens: json['allergens'] !=null ? json['allergens'].join(', '): null,
     );
   }
 
@@ -164,9 +158,9 @@ class OptionGroup extends Equatable {
 
   factory OptionGroup.fromJson(Map<String, dynamic> json) {
     return OptionGroup(
-      name: json['name'],
+      name: json['title'],
       isRequired: json['isRequired'],
-      items: (json['items'] as List<dynamic>)
+      items: (json['options'] as List<dynamic>)
           .map(
             (e) => OptionItem.fromJson(e),
           )
@@ -193,7 +187,7 @@ class OptionItem extends Equatable {
   factory OptionItem.fromJson(Map<String, dynamic> json) {
     return OptionItem(
       name: json['name'],
-      price: json['price'] != null ? (json['price'] as num).toDouble() : null,
+      price: json['priceMofifier']?.toDouble(),
     );
   }
 

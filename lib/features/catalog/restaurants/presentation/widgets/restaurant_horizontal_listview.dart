@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../catalog/restaurants/domain/domain.dart';
+import '../../domain/domain.dart';
 
 class RestaurantHorizontalListview extends StatefulWidget {
   final List<Restaurant> restaurants;

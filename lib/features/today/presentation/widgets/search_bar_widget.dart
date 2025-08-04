@@ -1,4 +1,3 @@
-import 'package:eisty/features/auth/auth.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -27,20 +26,6 @@ class SearchBarWidget extends StatelessWidget {
         ),
       ),
     );
-  //   return Padding(
-  //     padding: const EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
-  //     child: Column(
-  //       children: [
-  //         CustomTextFormField(
-  //           // label:
-  //           hint: "What would your like to buy?",
-  //           fillColor: Color(0xFFFAFAFA),
-  //           prefixicon: Icons.search,
-  //           suffixIcon: Icons.sort,
-  //           hintStyle: TextStyle(color: Color(0xFFd0cece), fontSize: 18),
-  //         )
-  //       ],
-  //     ),
-  //   );
+  
   }
 }
