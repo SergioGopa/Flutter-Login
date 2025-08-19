@@ -1,4 +1,3 @@
-import 'package:eisty/features/catalog/deals/presentation/widgets/deal_horizontal_listview.dart';
 import 'package:eisty/features/catalog/restaurants/presentation/widgets/widgets.dart';
 import 'package:eisty/features/today/today.dart';
 import 'package:flutter/material.dart';
@@ -57,69 +56,70 @@ class _TodayScreenState extends ConsumerState<TodayScreen> {
           else
             SliverToBoxAdapter(
                 child: Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                // LocationHeaderWidget(city: 'Queretaro'),
-                CategoryChipsWidget(),
-                HeroCarouselWidget(
-                  deals: dealsState.featuredDeals,
-                ),
-                DealHorizontalListview(
-                  deals: dealsState.featuredDeals,
-                  title: 'Queretaro - Featured Deals',
-                  subTitle: 'Jueves 30',
-                  loadNextPage: () {
-                    print('LLamado del padre');
-                    dealsNotifier.loadNextPage();
-                  },
-                  isLastPage: dealsState.isLastPage,
-                ),
-                DealHorizontalListview(
-                  deals: dealsState.popularDeals,
-                  title: 'Populares',
-                  subTitle: 'Jueves 30',
-                  loadNextPage: () {
-                    print('LLamado del padre');
-                    dealsNotifier.loadNextPage();
-                  },
-                  isLastPage: dealsState.isLastPage,
-                ),
-                DealHorizontalListview(
-                  deals: dealsState.upcomingDeals,
-                  title: 'Mejor Calificadas',
-                  subTitle: 'Jueves 30',
-                  loadNextPage: () {
-                    print('LLamado del padre');
-                    dealsNotifier.loadNextPage();
-                  },
-                  isLastPage: dealsState.isLastPage,
-                ),
-                RestaurantHorizontalListview(
-                  restaurants: restaurantState.nearbyRestaurants,
-                  title: 'Nearby Restaurants',
-                  subTitle: 'Hi',
-                  loadNextPage: () {
-                    restaurantsNotifier.loadNextPage();
-                  },
-                  isLastPage: restaurantState.isLastPage,
-                ),
-                RestaurantHorizontalListview(
-                  restaurants: restaurantState.topRatedRestaurants,
-                  title: 'Top Rated',
-                  subTitle: 'Hi',
-                  loadNextPage: () {
-                    restaurantsNotifier.loadNextPage();
-                  },
-                  isLastPage: restaurantState.isLastPage,
-                ),
-                const SizedBox(
-                  height: 30,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    CategoryChipsWidget(),
+                    HeroCarouselWidget(
+                      deals: dealsState.featuredDeals,
+                    ),
+                    DealHorizontalListview(
+                      deals: dealsState.featuredDeals,
+                      title: 'Queretaro - Featured Deals',
+                      subTitle: 'Jueves 30',
+                      loadNextPage: () {
+                        print('LLamado del padre');
+                        dealsNotifier.loadNextPage();
+                      },
+                      isLastPage: dealsState.isLastPage,
+                    ),
+                    DealHorizontalListview(
+                      deals: dealsState.popularDeals,
+                      title: 'Populares',
+                      subTitle: 'Jueves 30',
+                      loadNextPage: () {
+                        print('LLamado del padre');
+                        dealsNotifier.loadNextPage();
+                      },
+                      isLastPage: dealsState.isLastPage,
+                    ),
+                    DealHorizontalListview(
+                      deals: dealsState.upcomingDeals,
+                      title: 'Mejor Calificadas',
+                      subTitle: 'Jueves 30',
+                      loadNextPage: () {
+                        print('LLamado del padre');
+                        dealsNotifier.loadNextPage();
+                      },
+                      isLastPage: dealsState.isLastPage,
+                    ),
+                    RestaurantHorizontalListview(
+                      restaurants: restaurantState.nearbyRestaurants,
+                      title: 'Nearby Restaurants',
+                      subTitle: 'Hi',
+                      loadNextPage: () {
+                        restaurantsNotifier.loadNextPage();
+                      },
+                      isLastPage: restaurantState.isLastPage,
+                    ),
+                    RestaurantHorizontalListview(
+                      restaurants: restaurantState.topRatedRestaurants,
+                      title: 'Top Rated',
+                      subTitle: 'Hi',
+                      loadNextPage: () {
+                        restaurantsNotifier.loadNextPage();
+                      },
+                      isLastPage: restaurantState.isLastPage,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
                 )
-              ],
-            ))
-        ]),
+              )
+            ]
+        ),
       ),
     );
   }

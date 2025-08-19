@@ -36,7 +36,14 @@ class DealDetailScreen extends ConsumerWidget {
             imageUrls: deal!.imageUrls,
           ),
           DealDetailTitlePrice(deal: deal,),
-          DealDetailTags(deal: deal)
+          DealDetailTags(deal: deal),
+          DealDetailOptions(deal: deal),
+          DealDetailRestaurantCard(restaurantId: deal.restaurantId,),
+          DealDetailRelated(relatedDealIds: deal.relatedDealIds,),
+          // DealHorizontalListview(deals: deal),
+          DealDetailReviews(reviews: deal.reviews,),
+          DealDetailBottomBar(deal: deal)
+
           
         ],
       ),

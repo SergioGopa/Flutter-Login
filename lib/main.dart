@@ -25,6 +25,7 @@ class MainApp extends ConsumerWidget {
           routerConfig: appRouter,
           debugShowCheckedModeBanner: false,
           title: 'Eisty',
+          theme: ThemeData.dark(),
         );
       },
     );

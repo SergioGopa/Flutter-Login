@@ -5,20 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final goRouterNotifierProvider = ChangeNotifierProvider((ref) {
-    final authNotifier = ref.watch(authProvider.notifier);
-    final keyValueStorage = ref.watch(keyValueStorageServiceProvider);
+  final authNotifier = ref.watch(authProvider.notifier);
+  final keyValueStorage = ref.watch(keyValueStorageServiceProvider);
 
-    return GoRouterNotifier(authNotifier, keyValueStorage);
-  }    
-);
+  return GoRouterNotifier(authNotifier, keyValueStorage);
+});
 
 class GoRouterNotifier extends ChangeNotifier {
   // final AuthNotifier _authNotifier;
   final AuthNotifier _authNotifier;
+
   final KeyValueStorageService _keyValueStorage;
 
   AuthStatus _authStatus = AuthStatus.checking;
   bool _hasCompletedOnboarding = false;
+  bool _splashDone = false;
 
   GoRouterNotifier(this._authNotifier, this._keyValueStorage) {
     _authNotifier.addListener(
@@ -32,6 +33,7 @@ class GoRouterNotifier extends ChangeNotifier {
 
   AuthStatus get authStatus => _authStatus;
   bool get hasCompletedOnboarding => _hasCompletedOnboarding;
+  bool get splashDone => _splashDone;
 
   Future<void> _init() async {
     final completed =
@@ -54,6 +56,12 @@ class GoRouterNotifier extends ChangeNotifier {
 
   set authStatus(AuthStatus value) {
     _authStatus = value;
+    notifyListeners();
+  }
+
+  void markSplashDone() {
+    if (_splashDone) return;
+    _splashDone = true;
     notifyListeners();
   }
 }

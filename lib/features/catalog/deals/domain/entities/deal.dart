@@ -1,3 +1,4 @@
+
 class Deal {
   final String id;
   final String title;
@@ -12,14 +13,14 @@ class Deal {
   final double discountedPrice;
 
   // Categorization / Filtering
-  final bool isFeatured;       // carousel
-  final bool isPopular;        // popular deals
-  final bool isUpcoming;       // validFrom in the future
+  final bool isFeatured; // carousel
+  final bool isPopular; // popular deals
+  final bool isUpcoming; // validFrom in the future
   final List<String> categories; // for category filter e.g. ["Mexican", "2x1"]
 
   // Ratings & Reviews
-  final double rating;         // average rating
-  final int reviewsCount;      // number of reviews
+  final double rating; // average rating
+  final int reviewsCount; // number of reviews
 
   Deal({
     required this.id,
@@ -78,41 +79,4 @@ class Deal {
     );
   }
 
-  factory Deal.fromJson(Map<String, dynamic> json) => Deal(
-        id: json['id'],
-        title: json['title'],
-        description: json['description'],
-        imageUrl: json['imageUrl'],
-        type: json['type'],
-        validFrom: DateTime.parse(json['validFrom']),
-        validUntil: DateTime.parse(json['validUntil']),
-        restaurantId: json['restaurantId'],
-        originalPrice: (json['originalPrice'] as num).toDouble(),
-        discountedPrice: (json['discountedPrice'] as num).toDouble(),
-        isFeatured: json['isFeatured'] ?? false,
-        isPopular: json['isPopular'] ?? false,
-        isUpcoming: json['isUpcoming'] ?? false,
-        categories: List<String>.from(json['categories'] ?? []),
-        rating: (json['rating'] ?? 0).toDouble(),
-        reviewsCount: json['reviewsCount'] ?? 0,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'description': description,
-        'imageUrl': imageUrl,
-        'type': type,
-        'validFrom': validFrom.toIso8601String(),
-        'validUntil': validUntil.toIso8601String(),
-        'restaurantId': restaurantId,
-        'originalPrice': originalPrice,
-        'discountedPrice': discountedPrice,
-        'isFeatured': isFeatured,
-        'isPopular': isPopular,
-        'isUpcoming': isUpcoming,
-        'categories': categories,
-        'rating': rating,
-        'reviewsCount': reviewsCount,
-      };
 }

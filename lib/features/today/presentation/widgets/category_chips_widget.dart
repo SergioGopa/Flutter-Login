@@ -49,9 +49,9 @@ class TopMenuTiles extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color(0xFFfae3e2),
-                  blurRadius: 25.0,
-                  offset: Offset(0.0, 0.75)
+                  color: Color.fromARGB(255, 6, 6, 6),
+                  blurRadius: 30.0,
+                  offset: Offset(0.0, 0.1)
                 )
               ]
             ),
@@ -67,12 +67,12 @@ class TopMenuTiles extends StatelessWidget {
                 width: 60,
                 height: 60,
                 child: Center(
-                  child: Image.asset("assets/images/topmenu/$imageUrl.png", width: 25, height: 25,),
+                  child: Image.asset("assets/images/topmenu/$imageUrl.png", width: 35, height: 35,),
                 ),
               ),
             ),
           ),
-          Text(name, style: TextStyle(color: Color(0xFF6e6e71), fontSize: 14, fontWeight: FontWeight.w400),)
+          Text(name, style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),)
         ],
       ),
     );

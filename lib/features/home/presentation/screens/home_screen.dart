@@ -11,11 +11,11 @@ class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  int _currentIndex = 3;
+  int _currentIndex = 0;
 
   final List<Widget> _screens = const [
     TodayScreen(),
@@ -29,13 +29,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 700),
+        switchInCurve: Curves.easeIn,
+        switchOutCurve: Curves.easeOut,
+        child: IndexedStack(
+          key: ValueKey<int>(_currentIndex),
+          index:_currentIndex,
+          children: _screens,
+        ),
+        ),
+      
       bottomNavigationBar: CustomBottomNavbar(
         currentIndex: _currentIndex,
         onTabSelected: _onTabSelected,
-        ),
+      ),
     );
   }
 }

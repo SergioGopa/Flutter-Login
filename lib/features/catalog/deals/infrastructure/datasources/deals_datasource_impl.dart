@@ -2,9 +2,11 @@ import 'dart:convert';
 
 
 import 'package:eisty/features/catalog/deals/domain/domain.dart';
+import 'package:eisty/features/catalog/deals/infrastructure/infrastructure.dart';
 import 'package:flutter/services.dart';
 
 class DealsDatasourceImpl extends DealsDatasource {
+  
   Future<List<Deal>> _loadDeals() async {
     // 1.Load the mock JSON file from assets
     final jsonString =
@@ -16,7 +18,8 @@ class DealsDatasourceImpl extends DealsDatasource {
     // 3. Map JSON to Deal objects
     return data
         .map(
-          (item) => Deal.fromJson(item),
+          (item) => DealModel.fromJson(item).toEntity(),
+          // Deal.fromJson(item),
         )
         .toList();
   }

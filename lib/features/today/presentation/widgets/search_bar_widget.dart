@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:heroicons/heroicons.dart';
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).colorScheme;
-    final titleStyle = Theme.of(context).textTheme.titleMedium;
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: SizedBox(
         width: double.infinity,
         child: Row(
           children: [
-            Icon(Icons.food_bank, color: Colors.blue,),
-            const SizedBox(width: 5,),
-            Text('Sazan', style: titleStyle,),
+            GestureDetector(
+              onTap: () {
+                
+              },
+              child: HeroIcon(HeroIcons.magnifyingGlass, color: Colors.white,size: 32,)
+              ),
             const Spacer(),
-            IconButton(
-              onPressed: () {
-              
-            }, 
-            icon: Icon(Icons.search))
+            SvgPicture.asset("assets/brand/Sazan_logo_1.svg", width: 30, height: 30, ),
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
+                
+              },
+              child: HeroIcon(HeroIcons.adjustmentsHorizontal, color: Colors.white, size: 32,)
+              )
           ],
         ),
       ),

@@ -15,7 +15,7 @@ final goRouterProvider = Provider(
     final goRouterNotifier = ref.read(goRouterNotifierProvider);
 
     return GoRouter(
-      initialLocation: '/',
+      initialLocation: '/splash',
       refreshListenable: goRouterNotifier,
       routes: [
         //*First Screen
@@ -41,11 +41,11 @@ final goRouterProvider = Provider(
         ),
 
         GoRoute(
-          path: '/',
-          name: HomeScreen.name,
-          builder: (context, state) => HomeScreen(),
-          routes: [
-            GoRoute(
+            path: '/',
+            name: HomeScreen.name,
+            builder: (context, state) => HomeScreen(),
+            routes: [
+              GoRoute(
                 path: '/today',
                 name: 'today',
                 builder: (context, state) => const TodayScreen(),
@@ -65,27 +65,30 @@ final goRouterProvider = Provider(
                 name: 'profile',
                 builder: (context, state) => const ProfileScreen(),
               ),
-
               GoRoute(
                 path: '/deals/:id',
                 name: 'deal-detail',
                 builder: (context, state) {
-                  final id = state.pathParameters['id']??'no-id';
+                  final id = state.pathParameters['id'] ?? 'no-id';
                   return DealDetailScreen(
                     dealId: id,
                   );
                 },
               ),
-            ]
-          ),      
+            ]),
       ],
       redirect: (context, state) {
         final isGoingTo = state.matchedLocation;
         final authStatus = goRouterNotifier.authStatus;
         final hasCompletedOnboarding = goRouterNotifier.hasCompletedOnboarding;
+        final splashDone = goRouterNotifier.splashDone;
 
         //Still checking (loading splash)
         if (authStatus == AuthStatus.checking) {
+          return isGoingTo == '/splash' ? null : '/splash';
+        }
+
+        if (!splashDone) {
           return isGoingTo == '/splash' ? null : '/splash';
         }
 
@@ -114,4 +117,3 @@ final goRouterProvider = Provider(
     );
   },
 );
-

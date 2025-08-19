@@ -1,6 +1,11 @@
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_card_widget.dart';
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_hero_carousel_widget.dart';
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_horizontal_listview.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_horizontal_listview_top10.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_vertical_listview.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_promo_card.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/favorite_deal_button.dart';
+
 
 
 //Deal Details
