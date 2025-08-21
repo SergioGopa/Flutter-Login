@@ -5,7 +5,7 @@ import 'package:eisty/features/auth/inputs/inputs.dart';
 import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
 
 //!3 -  StateNotifierProvider - se consume afuera
-final SigninFormProvider =
+final signinFormProvider =
     StateNotifierProvider.autoDispose<SigninFormNotifier, SigninFormState>(
         (ref) {
   final loginUserCallback = ref.watch(authProvider.notifier).loginUser;

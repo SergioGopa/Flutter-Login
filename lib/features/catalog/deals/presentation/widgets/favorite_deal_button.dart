@@ -2,7 +2,6 @@ import 'package:eisty/features/catalog/deals/domain/domain.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/storage/favorite_deals_provider.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/storage/local_storage_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final isFavoriteProvider = FutureProvider.family.autoDispose(

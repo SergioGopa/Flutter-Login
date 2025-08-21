@@ -1,0 +1,1 @@
+export 'package:eisty/features/today/presentation/delegate/search_deal_delegate.dart';

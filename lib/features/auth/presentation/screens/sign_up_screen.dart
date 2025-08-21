@@ -84,7 +84,7 @@ class _SignupForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textStyles = Theme.of(context).textTheme;
-    final signupForm = ref.watch(SignupFormProvider);
+    final signupForm = ref.watch(signupFormProvider);
 
     ref.listen(
       authProvider,
@@ -111,7 +111,7 @@ class _SignupForm extends ConsumerWidget {
           CustomTextFormField(
             label: 'Full name',
             keyboardType: TextInputType.emailAddress,
-            onChanged: (value) => ref.read(SignupFormProvider.notifier).onNameChanged(value),
+            onChanged: (value) => ref.read(signupFormProvider.notifier).onNameChanged(value),
             errorMessage: signupForm.isFormPosted ? signupForm.username.errorMessage:null,
           ),
           const SizedBox(
@@ -120,7 +120,7 @@ class _SignupForm extends ConsumerWidget {
           CustomTextFormField(
             label: 'Email',
             keyboardType: TextInputType.emailAddress,
-            onChanged: (value) => ref.read(SignupFormProvider.notifier).onEmailChanged(value),
+            onChanged: (value) => ref.read(signupFormProvider.notifier).onEmailChanged(value),
             errorMessage: signupForm.isFormPosted ? signupForm.email.errorMessage: null,
           ),
           const SizedBox(
@@ -129,14 +129,14 @@ class _SignupForm extends ConsumerWidget {
           CustomTextFormField(
             label: 'Password',
             obscureText: true,
-            onChanged: (value) => ref.read(SignupFormProvider.notifier).onPasswordChanged(value),
+            onChanged: (value) => ref.read(signupFormProvider.notifier).onPasswordChanged(value),
             errorMessage: signupForm.isFormPosted ? signupForm.password.errorMessage: null,
           ),
           const SizedBox(height: 30),
           CustomTextFormField(
             label: 'Repeat Password',
             obscureText: true,
-            onChanged: (value) => ref.read(SignupFormProvider.notifier).onPasswordChanged(value),
+            onChanged: (value) => ref.read(signupFormProvider.notifier).onPasswordChanged(value),
             errorMessage: signupForm.isFormPosted ? signupForm.password.errorMessage: null,
           ),
           const SizedBox(
@@ -150,7 +150,7 @@ class _SignupForm extends ConsumerWidget {
               buttonColor: Colors.black,
               onPressed: signupForm.isPosting
                   ? null
-                  : ref.read(SignupFormProvider.notifier).onFormSubmit,
+                  : ref.read(signupFormProvider.notifier).onFormSubmit,
             ),
           ),
           const Spacer(

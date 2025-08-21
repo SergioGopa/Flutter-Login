@@ -94,10 +94,8 @@ class _DealVerticalListviewState extends State<DealVerticalListview> {
               child: DealPromoCard(deal: deal, index: widget.deals.indexOf(deal)),
             );
           },
-        ).toList(),
+        ),
 
-        
-        
         // Expanded(
         //     child: ListView.builder(
         //   controller: scrollController,

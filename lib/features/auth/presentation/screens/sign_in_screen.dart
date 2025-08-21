@@ -13,7 +13,6 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
-    final textStyles = Theme.of(context).textTheme;
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -69,7 +68,7 @@ class _SigninForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textStyles = Theme.of(context).textTheme;
-    final signinForm = ref.watch(SigninFormProvider);
+    final signinForm = ref.watch(signinFormProvider);
     ref.listen(
       authProvider,
       (previous, next) {
@@ -97,7 +96,7 @@ class _SigninForm extends ConsumerWidget {
             keyboardType: TextInputType.emailAddress,
             prefixicon: Icons.email_rounded,
             onChanged: (value) =>
-                ref.read(SigninFormProvider.notifier).onEmailChanged(value),
+                ref.read(signinFormProvider.notifier).onEmailChanged(value),
             errorMessage:
                 signinForm.isFormPosted ? signinForm.email.errorMessage : null,
           ),
@@ -109,7 +108,7 @@ class _SigninForm extends ConsumerWidget {
             prefixicon: Icons.lock,
             obscureText: true,
             onChanged: (value) =>
-                ref.read(SigninFormProvider.notifier).onPasswordChanged(value),
+                ref.read(signinFormProvider.notifier).onPasswordChanged(value),
             errorMessage: signinForm.isFormPosted
                 ? signinForm.password.errorMessage
                 : null,
@@ -125,7 +124,7 @@ class _SigninForm extends ConsumerWidget {
               buttonColor: Colors.black,
               onPressed: signinForm.isPosting
                   ? null
-                  : ref.read(SigninFormProvider.notifier).onFormSubmit
+                  : ref.read(signinFormProvider.notifier).onFormSubmit
               ,
             ),
           ),

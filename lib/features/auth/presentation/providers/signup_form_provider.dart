@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:eisty/features/auth/inputs/inputs.dart';
 
-final SignupFormProvider =
+final signupFormProvider =
     StateNotifierProvider.autoDispose<SignupFormNotifier, SignupFormState>(
   (ref) {
     final signupUserCallback = ref.watch(authProvider.notifier).registerUser;

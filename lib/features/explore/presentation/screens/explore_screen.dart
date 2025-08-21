@@ -1,11 +1,9 @@
 import 'package:eisty/features/catalog/deals/presentation/providers/deals_provider.dart';
-import 'package:eisty/features/catalog/restaurants/presentation/providers/providers.dart';
 import 'package:eisty/features/today/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../catalog/deals/presentation/widgets/widgets.dart';
-import '../../../catalog/restaurants/presentation/widgets/widgets.dart';
 
 class ExploreScreen extends ConsumerStatefulWidget {
   const ExploreScreen({super.key});
@@ -23,9 +21,9 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     final dealsState = ref.watch(dealsProvider);
-    final restaurantState = ref.watch(restaurantsProvider);
     final dealsNotifier = ref.read(dealsProvider.notifier);
-    final restaurantsNotifier = ref.read(restaurantsProvider.notifier);
+    // final restaurantState = ref.watch(restaurantsProvider);
+    // final restaurantsNotifier = ref.read(restaurantsProvider.notifier);
 
     return Scaffold(
       body: SafeArea(
@@ -62,7 +60,6 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       deals: dealsState.featuredDeals,
                       title: 'Top 10 : Lugares imperdibles',
                       loadNextPage: () {
-                        print('LLamado del padre');
                         dealsNotifier.loadNextPage();
                       },
                       isLastPage: dealsState.isLastPage,

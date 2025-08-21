@@ -1,7 +1,3 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:eisty/features/catalog/deals/presentation/providers/providers.dart';
-import 'package:eisty/features/catalog/deals/presentation/providers/storage/favorite_deals_provider.dart';
-import 'package:eisty/features/catalog/deals/presentation/providers/storage/local_storage_provider.dart';
 import 'package:eisty/features/catalog/deals/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,10 +51,6 @@ class _DealHorizontalListviewTop10State
                 ),
                 curve: Curves.easeInOut);
           }
-
-
-          print('Load next deals');
-
           Future.delayed(const Duration(milliseconds: 500), () {
             _isRequestInProgress = false;
           });

@@ -1,13 +1,10 @@
 import 'package:eisty/config/router/app_router_notifier.dart';
 import 'package:eisty/features/auth/presentation/providers/current_page_provider.dart';
-import 'package:eisty/features/auth/presentation/providers/slide_provider.dart';
 import 'package:eisty/features/auth/presentation/widgets/slideshow.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:provider/provider.dart';
 
 // class OnboardingScreen extends ConsumerWidget {
 class OnboardingScreen extends ConsumerStatefulWidget {

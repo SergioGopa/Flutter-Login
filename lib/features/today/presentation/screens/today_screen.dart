@@ -11,7 +11,7 @@ class TodayScreen extends ConsumerStatefulWidget {
   const TodayScreen({super.key});
 
   @override
-  _TodayScreenState createState() => _TodayScreenState();
+  ConsumerState<TodayScreen> createState() => _TodayScreenState();
 }
 
 class _TodayScreenState extends ConsumerState<TodayScreen> {
@@ -69,7 +69,6 @@ class _TodayScreenState extends ConsumerState<TodayScreen> {
                       title: 'Queretaro - Featured Deals',
                       subTitle: 'Jueves 30',
                       loadNextPage: () {
-                        print('LLamado del padre');
                         dealsNotifier.loadNextPage();
                       },
                       isLastPage: dealsState.isLastPage,
@@ -79,7 +78,6 @@ class _TodayScreenState extends ConsumerState<TodayScreen> {
                       title: 'Populares',
                       subTitle: 'Jueves 30',
                       loadNextPage: () {
-                        print('LLamado del padre');
                         dealsNotifier.loadNextPage();
                       },
                       isLastPage: dealsState.isLastPage,
@@ -89,7 +87,6 @@ class _TodayScreenState extends ConsumerState<TodayScreen> {
                       title: 'Mejor Calificadas',
                       subTitle: 'Jueves 30',
                       loadNextPage: () {
-                        print('LLamado del padre');
                         dealsNotifier.loadNextPage();
                       },
                       isLastPage: dealsState.isLastPage,

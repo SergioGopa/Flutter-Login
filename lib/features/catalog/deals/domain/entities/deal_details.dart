@@ -100,7 +100,7 @@ class DealDetails extends Equatable {
       frequentlyBoughtTogetherIds:
           List<String>.from(json['frequentlyBoughtTogetherIds']),
       restaurantId: json['restaurantId'],
-      allergens: json['allergens'] !=null ? json['allergens'].join(', '): null,
+      allergens: json['allergens']?.join(', '),
     );
   }
 

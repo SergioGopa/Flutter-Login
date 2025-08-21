@@ -67,7 +67,7 @@ class DealDetailRestaurantCard extends ConsumerWidget {
                     children: [
                       const Icon(Icons.star, color: Colors.amber,size: 16,),
                       const SizedBox(width: 4,),
-                      Text("${restaurant.rating.toStringAsFixed(1)}")
+                      Text(restaurant.rating.toStringAsFixed(1))
                     ],
                   )
                 ],

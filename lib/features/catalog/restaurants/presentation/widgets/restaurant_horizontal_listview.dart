@@ -49,10 +49,6 @@ class _RestaurantHorizontalListviewState extends State<RestaurantHorizontalListv
               ),
               curve: Curves.easeInOut);  
           }
-
-          
-          print('Load next deals');
-
           Future.delayed(const Duration(milliseconds: 500), () {
             _isRequestInProgress = false;
           });

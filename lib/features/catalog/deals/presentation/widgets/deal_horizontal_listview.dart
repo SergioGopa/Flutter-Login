@@ -48,9 +48,6 @@ class _DealHorizontalListviewState extends State<DealHorizontalListview> {
                 ),
                 curve: Curves.easeInOut);
           }
-
-          print('Load next deals');
-
           Future.delayed(const Duration(milliseconds: 500), () {
             _isRequestInProgress = false;
           });

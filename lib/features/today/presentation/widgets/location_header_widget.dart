@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class LocationHeaderWidget extends StatelessWidget {
   final String city;
-  const LocationHeaderWidget({required this.city});
+  const LocationHeaderWidget({super.key, required this.city});
 
   @override
   Widget build(BuildContext context) {
