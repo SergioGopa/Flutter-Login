@@ -72,6 +72,7 @@ final goRouterProvider = Provider(
                   final id = state.pathParameters['id'] ?? 'no-id';
                   return DealDetailScreen(
                     dealId: id,
+                    
                   );
                 },
               ),

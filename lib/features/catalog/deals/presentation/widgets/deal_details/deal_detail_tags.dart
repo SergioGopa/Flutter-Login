@@ -12,7 +12,18 @@ class DealDetailTags extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Wrap(
           spacing: 6,
-          children: deal.tags.map((tag) => Chip(label: Text(tag), backgroundColor: Colors.grey[200],),).toList()
+          children: deal.tags.map((tag) => Chip(
+              label: Text(tag, 
+                style: TextStyle(color: Color(0xFFCB087B), fontWeight: FontWeight.bold, fontSize: 16),), 
+                backgroundColor: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  side: const BorderSide(
+                    color:  Color(0xFFCB087B),
+                    width: 1.5
+                  )
+                ),
+                ),).toList()
         ),
       ),
     );

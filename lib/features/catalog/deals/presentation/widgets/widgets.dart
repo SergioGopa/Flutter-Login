@@ -6,8 +6,6 @@ export 'package:eisty/features/catalog/deals/presentation/widgets/deal_vertical_
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_promo_card.dart';
 export 'package:eisty/features/catalog/deals/presentation/widgets/favorite_deal_button.dart';
 
-
-
 //Deal Details
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_bottom_bar.dart';
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_header.dart';
@@ -16,5 +14,11 @@ export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/d
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_restaurant_card.dart';
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_reviews.dart';
 export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_tags.dart';
-export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_title_price.dart';
-
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_title.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_description.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_schedule.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_days.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_location.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_status.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_address.dart';
+export 'package:eisty/features/catalog/deals/presentation/widgets/deal_details/deal_detail_countdown.dart';
