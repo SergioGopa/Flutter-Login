@@ -10,4 +10,6 @@ class CustomError implements Exception {
 
   CustomError(this.message);
 
+  @override
+  String toString() => message;
 }

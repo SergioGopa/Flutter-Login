@@ -1,5 +1,6 @@
 import 'package:eisty/features/auth/domain/domain.dart';
 import 'package:eisty/features/auth/infrastructure/infrastructure.dart';
+import 'package:eisty/features/shared/domain/domain.dart';
 import 'package:eisty/features/shared/infrastructure/services/key_value_storage_service.dart';
 import 'package:eisty/features/shared/infrastructure/services/key_value_storage_service_impl.dart';
 import 'package:eisty/features/shared/infrastructure/services/secure_storage_service.dart';
@@ -35,7 +36,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
     try {
       final authResult = await authRepository.login(email, password);
-      await keyValueStorageService.setKeyValue('token', authResult.token);
+      // await keyValueStorageService.setKeyValue('token', authResult.token);
+      await secureStorageService.saveToken(authResult.token);
+      // await secureStorageService
+
       _setLoggedUser(authResult.user);
     } on CustomError catch (e) {
       logout(e.message);
@@ -50,7 +54,10 @@ class AuthNotifier extends StateNotifier<AuthState> {
     try {
       final authResult =
           await authRepository.register(email, password, fullName);
-      await keyValueStorageService.setKeyValue('token', authResult.token);
+
+      // await keyValueStorageService.setKeyValue('token', authResult.token);
+      await secureStorageService.saveToken(authResult.token);
+
       _setLoggedUser(authResult.user);
     } on CustomError catch (e) {
       logout(e.message);
@@ -60,14 +67,16 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   void checkAuthStatus() async {
-    final token = await keyValueStorageService.getValue<String>('token');
+    // final token = await keyValueStorageService.getValue<String>('token');
+    final token = await secureStorageService.getToken();
 
     if (token == null) return logout();
 
     try {
       final authResult = await authRepository.checkAuthStatus(token);
 
-      await keyValueStorageService.setKeyValue('token', authResult.token);
+      // await keyValueStorageService.setKeyValue('token', authResult.token);
+      await secureStorageService.saveToken(authResult.token);
       _setLoggedUser(authResult.user);
     } catch (e) {
       logout();
@@ -80,7 +89,9 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> logout([String? errorMessage]) async {
-    await keyValueStorageService.removeKey('token');
+    // await keyValueStorageService.removeKey('token');
+    await secureStorageService.deleteToken();
+    
     //Clean token
     state = state.copyWith(
         authStatus: AuthStatus.notAuthenticated,

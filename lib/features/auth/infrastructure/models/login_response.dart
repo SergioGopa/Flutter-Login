@@ -1,4 +1,5 @@
-import '../../domain/domain.dart';
+import 'package:eisty/features/shared/domain/domain.dart';
+
 
 class LoginResponse {
   final String token;

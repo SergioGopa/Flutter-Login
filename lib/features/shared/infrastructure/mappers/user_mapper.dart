@@ -1,4 +1,4 @@
-import 'package:eisty/features/auth/domain/domain.dart';
+import 'package:eisty/features/shared/domain/domain.dart';
 
 class UserMapper {
   static User userJsonToEntity(Map<String, dynamic> json) => User(

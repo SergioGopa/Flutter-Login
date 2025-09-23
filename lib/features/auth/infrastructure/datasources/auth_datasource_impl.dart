@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:eisty/config/config.dart';
 import 'package:eisty/features/auth/domain/domain.dart';
 import 'package:eisty/features/auth/infrastructure/infrastructure.dart';
+import 'package:eisty/features/shared/infrastructure/infrastructure.dart';
 
 class AuthDatasourceImpl extends AuthDatasource {
   final dio = Dio(BaseOptions(

@@ -1,4 +1,5 @@
 import 'package:eisty/features/catalog/deals/presentation/screens/screens.dart';
+import 'package:eisty/features/profile/presentation/screens/account_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -77,6 +78,55 @@ final goRouterProvider = Provider(
                 },
               ),
             ]),
+          GoRoute(
+            path: '/profile',
+            name: ProfileScreen.name,
+            builder: (context, state) => ProfileScreen(),
+            routes: [
+              GoRoute(
+                path: 'account',
+                name: AccountScreen.name,
+                builder: (context, state) => AccountScreen(),
+                ),
+
+              GoRoute(
+                path: 'notifications',
+                name: NotificationsScreen.name,
+                builder: (context, state) => NotificationsScreen(),
+                ),
+
+              GoRoute(
+                path: 'promos',
+                name: SavedPromosScreen.name,
+                builder: (context, state) => SavedPromosScreen(),
+                ),
+              
+              GoRoute(
+                path: 'support',
+                name: SupportScreen.name,
+                builder: (context, state) => SupportScreen(),
+                ),
+              
+              GoRoute(
+                path: 'terms',
+                name: TermsScreen.name,
+                builder: (context, state) => TermsScreen(),
+                ),
+
+              GoRoute(
+                path: 'theme',
+                name: PreferencesScreen.name,
+                builder: (context, state) => PreferencesScreen(),
+                ),
+              
+              // GoRoute(
+              //   path: 'terms',
+              //   name: TermsScreen.name,
+              //   builder: (context, state) => TermsScreen(),
+              //   ),
+              
+            ]
+            )
       ],
       redirect: (context, state) {
         final isGoingTo = state.matchedLocation;

@@ -6,9 +6,6 @@ export 'package:eisty/features/auth/infrastructure/datasources/auth_datasource_i
 export 'package:eisty/features/auth/infrastructure/errors/auth_errors.dart';
 
 //!Mappers
-export 'package:eisty/features/auth/infrastructure/mappers/user_mapper.dart';
-
-//!Mappers
 export 'package:eisty/features/auth/infrastructure/models/login_response.dart';
 
 //!Repository
