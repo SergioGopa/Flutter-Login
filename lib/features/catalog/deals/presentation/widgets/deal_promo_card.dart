@@ -1,3 +1,4 @@
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/catalog/deals/domain/domain.dart';
 import 'package:eisty/features/catalog/deals/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class DealPromoCard extends ConsumerWidget {
       margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 6),
       padding: const EdgeInsets.all(10),
       height: 150,
+      width: cardWidth,
       decoration: BoxDecoration(
         color: Colors.grey[850],
         borderRadius: BorderRadius.circular(20),
@@ -33,12 +35,9 @@ class DealPromoCard extends ConsumerWidget {
             color: Colors.black12,
             blurRadius: 6,
             offset: Offset(0, 4),
-          )
+          ),
         ]
       ),
-
-      width: cardWidth,
-      
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -64,79 +63,88 @@ class DealPromoCard extends ConsumerWidget {
               if (restaurant == null) return const SizedBox();
 
               return Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                  child: Stack(
+                    children:[ 
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Spacer(),
-                          FavoriteDealButton(deal: deal),
-                        ],
-                      ),
-                      Text(
-                        deal.title,
-                        style: GoogleFonts.workSans(
-                            color: Color(0xFFFDFDFD), fontSize: 16),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                      if (restaurant.categories.isNotEmpty)
-                        Text(
-                          restaurant.categories.take(2).join('/'),
-                          style: GoogleFonts.workSans(
-                              color: Color(0xFFFDFDFD), fontSize: 12),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                        ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          //TODO: Distance
-                          Text('3 Km',style: GoogleFonts.workSans(color: Color(0xFFFDFDFD), fontSize: 12),overflow: TextOverflow.ellipsis,maxLines: 1,),
-                          Spacer(),
-                          Text(restaurant.name,style: GoogleFonts.workSans(color: Color(0xFFFDFDFD), fontSize: 16),overflow: TextOverflow.ellipsis,maxLines: 1,),
-                          const SizedBox(width: 5,),
-                          Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              Container(
-                                width: 30,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.grey[200],
-                                  border: Border.all(color: Colors.white, width: 2)
-                                ),
-                                child: ClipOval(
-                                  child: Image.asset(restaurant.imageUrl, width: 20, height: 20, ),
-                                ),
-                              ),
-                              Positioned(
-                                right: -2,
-                                top: -2,
-                                child: Container(
-                                  width: 12,
-                                  height: 12,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
+                          const SizedBox(height: 20,),
+                          Text(
+                            deal.title,
+                            style: AppTextStyles.t1Bold.copyWith(
+                                  color: AppColors.blancoSazan),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          const SizedBox(height: 20,),
+                          if (restaurant.categories.isNotEmpty)
+                            Text(
+                              restaurant.categories.take(2).join('/'),
+                              style: AppTextStyles.t2Regular.copyWith(
+                                  fontSize: 12,
+                                  color: AppColors.blancoSazan),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                            Spacer(),
 
-                                    color: Colors.green,
-                                    
+                            Row(
+                            children: [
+                              //TODO: Distance
+                              Text('3 Km',
+                              style: AppTextStyles.t2Regular.copyWith(
+                                fontSize: 12,
+                                color: AppColors.blancoSazan),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,),
+                              Spacer(),
+                              Text(restaurant.name,
+                              style: AppTextStyles.t2Regular.copyWith(
+                                  color: AppColors.blancoSazan),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,),
+                              const SizedBox(width: 5,),
+                              Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.grey[200],
+                                      border: Border.all(color: Colors.white, width: 2)
+                                    ),
+                                    child: ClipOval(
+                                      child: Image.asset(restaurant.imageUrl, width: 20, height: 20, ),
+                                    ),
                                   ),
-                                )
-                                )
+                                  Positioned(
+                                    right: -2,
+                                    top: -2,
+                                    child: Container(
+                                      width: 12,
+                                      height: 12,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.green,
+                                      ),
+                                    )
+                                  )
+                                ],
+                              )
                             ],
-                          )
+                          ),                          
                         ],
                       ),
-                    ],
-                  ));
+                      Positioned(right: 0,top: 0,child: FavoriteDealButton(deal: deal)),
+                    ]
+                  )
+                );
             },
             error: (error, stackTrace) => Text('Error: $error'),
             loading: () => const SizedBox(
-              height: 32,
+            height: 32,
             ),
           ),
         ],

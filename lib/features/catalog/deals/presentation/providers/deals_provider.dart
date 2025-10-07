@@ -1,6 +1,6 @@
-
 import 'package:eisty/features/catalog/deals/domain/domain.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/providers.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final dealsProvider = StateNotifierProvider<DealsNotifier, DealsState>(
@@ -15,6 +15,62 @@ class DealsNotifier extends StateNotifier<DealsState> {
 
   DealsNotifier(this.dealsRepository) : super(DealsState()) {
     loadNextPage();
+  }
+
+  void applyFilters(Map<String, dynamic> filters) {
+    state = state.copyWith(activeFilters: filters);
+  }
+
+  List<Deal> get filteredDeals {
+    if (state.activeFilters.isEmpty) return state.allDeals;
+
+    final filters = state.activeFilters;
+
+    return state.allDeals.where(
+      (deal) {
+        final selectedCategories = filters['categories'] as List<String>?;
+
+        if (selectedCategories != null && selectedCategories.isNotEmpty) {
+          final matches = deal.categories.any(
+            (category) => selectedCategories.contains(category),
+          );
+          if (!matches) return false;
+        }
+
+        //Valid Todat filter
+        final validToday = filters['validToday'] as bool ?? false;
+
+        if (validToday) {
+          final now = DateTime.now();
+          if (now.isBefore(deal.validFrom) || now.isAfter(deal.validUntil)) {
+            return false;
+          }
+        }
+
+        //Popular filter
+        if ((filters['popular'] as bool ?? false) && !deal.isPopular) {
+          return false;
+        }
+
+        //Featured filter
+        if ((filters['featured'] as bool ?? false) && !deal.isFeatured) {
+          return false;
+        }
+
+        //nearby filter
+        if ((filters['upcoming'] as bool ?? false) && !deal.isUpcoming) {
+          return false;
+        }
+
+        
+
+        return true;
+      },
+    ).toList();
+  }
+
+  void clearFilters() {
+    state = state.copyWith(activeFilters: {});
   }
 
   //Load Featured Deals
@@ -95,11 +151,23 @@ class DealsNotifier extends StateNotifier<DealsState> {
     state = state.copyWith(
       isLoading: false,
       isLastPage: false,
-      offset: state.offset+state.limit,
+      offset: state.offset + state.limit,
       allDeals: allDeals,
-      featuredDeals: allDeals.where((d) => d.isFeatured,).toList(),
-      popularDeals: allDeals.where((d) => d.isPopular,).toList(),
-      upcomingDeals: allDeals.where((d) => d.isUpcoming,).toList(),
+      featuredDeals: allDeals
+          .where(
+            (d) => d.isFeatured,
+          )
+          .toList(),
+      popularDeals: allDeals
+          .where(
+            (d) => d.isPopular,
+          )
+          .toList(),
+      upcomingDeals: allDeals
+          .where(
+            (d) => d.isUpcoming,
+          )
+          .toList(),
     );
   }
 }

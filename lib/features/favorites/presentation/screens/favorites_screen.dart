@@ -1,8 +1,11 @@
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/catalog/deals/domain/domain.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/storage/favorite_deals_provider.dart';
 import 'package:eisty/features/favorites/presentation/widgets/widgets.dart';
+import 'package:eisty/features/shared/presentation/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class FavoritesScreen extends ConsumerStatefulWidget {
@@ -42,42 +45,54 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
     if (favoriteDeals.isEmpty) {
       final colors = Theme.of(context).colorScheme;
 
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.favorite_outline_sharp,
-              color: colors.primary,
-              size: 40,
-            ),
-            Text(
-              'Ohhh no!!!',
-              style: TextStyle(fontSize: 30, color: colors.primary),
-            ),
-            Text(
-              'No tienes promociones favoritas',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            FilledButton.tonal(
-                onPressed: () {
-                  context.push('/');
-                  // context.push('/home/0');
-                },
-                child: const Text('Empieza a buscar'))
-          ],
+      return Scaffold(
+        appBar: SazanAppBar(showLogo: true, ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.favorite_outline_sharp,
+                color: colors.primary,
+                size: 60,
+              ),
+              Text(
+                'Ohhh no!!!',
+                style: TextStyle(fontSize: 30, color: colors.primary),
+              ),
+              Text(
+                'No tienes promociones favoritas',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              FilledButton.tonal(
+                  onPressed: () {
+                    context.push('/');
+                  },
+                  child: const Text('Empieza a buscar'))
+            ],
+          ),
         ),
       );
     }
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: DealMasonry(deals: dealsList),
-        ),
+      appBar: SazanAppBar(showLogo: true, ),
+      body: Column(
+        children: [
+          Divider(
+                color: AppColors.rosaPrimario,
+                thickness: 3,
+                height: 27,
+              ),
+          Expanded(
+            child: DealMasonry(
+            deals: dealsList,
+            loadNextPage: loadNextPage,
+            ),
+          )],
+      ),
     );
   }
 }

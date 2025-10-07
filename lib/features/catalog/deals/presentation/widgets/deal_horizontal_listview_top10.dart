@@ -1,8 +1,8 @@
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/catalog/deals/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../restaurants/presentation/providers/providers.dart';
 import '../../domain/entities/deal.dart';
@@ -68,7 +68,7 @@ class _DealHorizontalListviewTop10State
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 320,
+      height: 310,
       child: Column(
         children: [
           if (widget.title != null)
@@ -80,17 +80,18 @@ class _DealHorizontalListviewTop10State
           ),
           Expanded(
               child: ListView.builder(
-            controller: scrollController,
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
-            itemCount: widget.deals.length,
-            itemBuilder: (context, index) {
-              return _Slide(
-                deal: widget.deals[index],
-                index: index,
-              );
-            },
-          ))
+                controller: scrollController,
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                itemCount: widget.deals.length,
+                itemBuilder: (context, index) {
+                  return _Slide(
+                    deal: widget.deals[index],
+                    index: index,
+                  );
+                },
+              )
+          )
         ],
       ),
     );
@@ -111,10 +112,17 @@ class _Slide extends ConsumerWidget {
         ref.watch(restaurantByIdProvider(deal.restaurantId));
     
     final double cardWidth = 180.0;
+    final colors = Theme.of(context).colorScheme;
 
     return Container(
       margin: EdgeInsets.only(left: index == 0 ? 8 : 6),
       width: cardWidth,
+      decoration: BoxDecoration(
+        color: Colors.grey[850],
+        borderRadius: BorderRadius.circular(20)
+
+      ),
+      padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -140,40 +148,13 @@ class _Slide extends ConsumerWidget {
               ),
               Positioned(
                 right: 0,
-                // top: 10,
                   child: FavoriteDealButton(deal: deal),
               )
-              // Positioned(
-              //     right: 10,
-              //     top: 10,
-              //     child: Container(
-              //         padding: const EdgeInsets.all(2),
-              //         decoration: BoxDecoration(
-              //             color: Colors.black38, shape: BoxShape.circle),
-              //         child: Icon(
-              //           Icons.favorite_border,
-              //           color: Colors.white,
-              //           size: 36,
-              //         ))),
-              // Positioned(
-              //     right: 10,
-              //     top: 40,
-              //     child: Icon(
-              //       Icons.favorite_border,
-              //       color: Colors.white,
-              //       size: 36,
-              //       shadows: [
-              //         Shadow(
-              //             blurRadius: 3,
-              //             color: Colors.black.withValues(alpha: 1),
-              //             offset: Offset(1, 2))
-              //       ],
-              //     )),
             ],
           ),
 
           const SizedBox(
-            height: 2,
+            height: 10,
           ),
 
           restaurantAsync.when(
@@ -187,21 +168,27 @@ class _Slide extends ConsumerWidget {
                     children: [
                       Text(
                         restaurant.name,
-                        style: GoogleFonts.workSans(
-                            color: Color(0xFFFDFDFD), fontSize: 16),
+                        style:  AppTextStyles.t2Regular.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: colors.secondary
+                        ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
+                      const SizedBox(height: 8,),
                       if (restaurant.categories.isNotEmpty)
                         Text(
                           restaurant.categories.take(2).join('/'),
-                          style: GoogleFonts.workSans(
-                              color: Color(0xFFFDFDFD), fontSize: 12),
+                          style:  AppTextStyles.t4Regular.copyWith(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14,
+                            color: colors.secondary
+                          ),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
                       const SizedBox(
-                        height: 2,
+                        height: 8,
                       ),
                       Row(
                         children: [
@@ -213,26 +200,32 @@ class _Slide extends ConsumerWidget {
                           //TODO: Open/Closed
                           Text(
                             'Abierto',
-                            style: GoogleFonts.workSans(
-                                color: Color(0xFFFDFDFD), fontSize: 12),
+                            style: AppTextStyles.t4Regular.copyWith(
+                              color: AppColors.blancoSazan
+                            ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
                           Text(
                             " | ",
-                            style: TextStyle(color: Color(0xFFFDFDFD)),
+                            style: AppTextStyles.t4Regular.copyWith(
+                              color: AppColors.blancoSazan
+                            ),
                           ),
                           //TODO: Distance
                           Text(
                             '3 Km',
-                            style: GoogleFonts.workSans(
-                                color: Color(0xFFFDFDFD), fontSize: 12),
+                            style: AppTextStyles.t4Regular.copyWith(
+                              color: AppColors.blancoSazan
+                            ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
                           Text(
                             " | ",
-                            style: TextStyle(color: Color(0xFFFDFDFD)),
+                            style: AppTextStyles.t4Regular.copyWith(
+                              color: AppColors.blancoSazan
+                            ),
                           ),
                           // Image.asset("assets/brand/logo_google.png"),
                           Icon(
@@ -242,8 +235,10 @@ class _Slide extends ConsumerWidget {
                           ),
                           Text(
                             restaurant.rating.toString(),
-                            style: GoogleFonts.workSans(
-                                color: Color(0xFFFDFDFD), fontSize: 12),
+                            style: AppTextStyles.t4Regular.copyWith(
+                              color: AppColors.blancoSazan
+                            ),
+                            
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
@@ -269,6 +264,8 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.only(top: 20),
       margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -277,10 +274,9 @@ class _Title extends StatelessWidget {
           const Spacer(),
           if (title != null)
             Text(title!,
-                style: GoogleFonts.montserratAlternates(
-                    color: Color(0xFFFCD73D),
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold)),
+                style: AppTextStyles.h1Bold.copyWith(
+                  color: colors.secondary
+                )),
           const Spacer(),
         ],
       ),

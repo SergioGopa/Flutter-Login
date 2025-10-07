@@ -38,13 +38,13 @@ class GeometricalBackground extends StatelessWidget {
             ),
             child: Column(
               children: [
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
-                ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
+                // ShapeRow(shapeWidgets: shapeWidgets),
               ],
             )
           ),

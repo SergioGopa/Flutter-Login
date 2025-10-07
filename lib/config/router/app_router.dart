@@ -1,5 +1,4 @@
 import 'package:eisty/features/catalog/deals/presentation/screens/screens.dart';
-import 'package:eisty/features/profile/presentation/screens/account_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -39,6 +38,11 @@ final goRouterProvider = Provider(
         GoRoute(
           path: '/signup',
           builder: (context, state) => const SignUpScreen(),
+        ),
+        GoRoute(
+          path: '/terms-signup',
+          // name: TermsSignupScreen.name,
+          builder: (context, state) => TermsSignupScreen(),
         ),
 
         GoRoute(
@@ -106,12 +110,6 @@ final goRouterProvider = Provider(
                 name: SupportScreen.name,
                 builder: (context, state) => SupportScreen(),
                 ),
-              
-              GoRoute(
-                path: 'terms',
-                name: TermsScreen.name,
-                builder: (context, state) => TermsScreen(),
-                ),
 
               GoRoute(
                 path: 'theme',
@@ -119,11 +117,11 @@ final goRouterProvider = Provider(
                 builder: (context, state) => PreferencesScreen(),
                 ),
               
-              // GoRoute(
-              //   path: 'terms',
-              //   name: TermsScreen.name,
-              //   builder: (context, state) => TermsScreen(),
-              //   ),
+              GoRoute(
+                path: 'terms',
+                name: TermsScreen.name,
+                builder: (context, state) => TermsScreen(),
+                ),
               
             ]
             )
@@ -151,7 +149,7 @@ final goRouterProvider = Provider(
 
         //Not authenticated
         if (authStatus == AuthStatus.notAuthenticated) {
-          if (isGoingTo == '/signin' || isGoingTo == '/signup') return null;
+          if (isGoingTo == '/signin' || isGoingTo == '/signup' ||isGoingTo == '/terms-signup') return null;
           return '/signin';
         }
 

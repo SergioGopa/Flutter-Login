@@ -1,7 +1,6 @@
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/catalog/deals/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../domain/entities/deal.dart';
 
@@ -23,45 +22,7 @@ class DealVerticalListview extends StatefulWidget {
 }
 
 class _DealVerticalListviewState extends State<DealVerticalListview> {
-  // final scrollController = ScrollController();
-  // bool _isRequestInProgress = false;
-  // 
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   scrollController.addListener(
-  //     () {
-  //       if (widget.loadNextPage == null) return;
-
-  //       if ((scrollController.position.pixels + 200) >=
-  //           scrollController.position.maxScrollExtent) {
-  //         if (_isRequestInProgress) return;
-
-  //         _isRequestInProgress = true;
-  //         widget.loadNextPage!();
-
-  //         if (widget.isLastPage) {
-  //           scrollController.animateTo(0,
-  //               duration: const Duration(
-  //                 milliseconds: 400,
-  //               ),
-  //               curve: Curves.easeInOut);
-  //         }
-
-  //         Future.delayed(const Duration(milliseconds: 500), () {
-  //           _isRequestInProgress = false;
-  //         });
-  //       }
-  //     },
-  //   );
-  // }
-
-  // @override
-  // void dispose() {
-  //   scrollController.dispose();
-  //   super.dispose();
-  // }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -73,16 +34,26 @@ class _DealVerticalListviewState extends State<DealVerticalListview> {
         if (widget.title != null)
           _Title(
             title: widget.title,
+            
           ),
         if(widget.deals.length >5)
           Row(
             children: [
-              SizedBox(width: 10,),
-              Text('Para ti hoy!!',style: GoogleFonts.workSans(color: Color(0xFFFDFDFD), fontSize: 20),overflow: TextOverflow.ellipsis,maxLines: 1,),
+              SizedBox(width: 15,),
+              Text('Para ti hoy!!',
+              style: AppTextStyles.t1Bold.copyWith(
+                              color: AppColors.rosaPrimario
+                            ),
+              // style: GoogleFonts.workSans(color: Color(0xFFFDFDFD), fontSize: 20),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,),
               Spacer(),
               TextButton(onPressed: () {  
               }, 
-              child: const Text('See all .. ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)),
+              child: Text('See all .. ', 
+              style: AppTextStyles.t1Bold.copyWith(
+                              color: AppColors.rosaPrimario)),),
+              // style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)),
             ],
           ),
 
@@ -95,20 +66,6 @@ class _DealVerticalListviewState extends State<DealVerticalListview> {
             );
           },
         ),
-
-        // Expanded(
-        //     child: ListView.builder(
-        //   controller: scrollController,
-        //   scrollDirection: Axis.vertical,
-        //   physics: const BouncingScrollPhysics(),
-        //   itemCount: widget.deals.length,
-        //   itemBuilder: (context, index) {
-        //     return DealPromoCard(
-        //       deal: widget.deals[index],
-        //       index: index,
-        //     );
-        //   },
-        // ))
       ],
     );
   }
@@ -120,6 +77,8 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.only(top: 20),
       margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -128,10 +87,9 @@ class _Title extends StatelessWidget {
           const Spacer(),
           if (title != null)
             Text(title!,
-                style: GoogleFonts.montserratAlternates(
-                    color: Color(0xFFFCD73D),
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold)),
+                style:  AppTextStyles.h1Bold.copyWith(
+                  color: colors.secondary,
+                )),
           const Spacer(),
         ],
       ),

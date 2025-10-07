@@ -1,3 +1,4 @@
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/deals_provider.dart';
 import 'package:eisty/features/today/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class ExploreScreen extends ConsumerStatefulWidget {
 }
 
 class _ExploreScreenState extends ConsumerState<ExploreScreen> {
-    @override
+  @override
   void initState() {
     super.initState();
   }
@@ -28,10 +29,6 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(slivers: [
-          SliverToBoxAdapter(
-              child: SizedBox(
-            height: 30,
-          )),
           const SliverAppBar(
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
@@ -52,38 +49,56 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
               ),
             )
           else
-            SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    Divider(color: Color(0xFFCB087B),thickness: 3,),
-                    DealHorizontalListviewTop10(
-                      deals: dealsState.featuredDeals,
-                      title: 'Top 10 : Lugares imperdibles',
-                      loadNextPage: () {
-                        dealsNotifier.loadNextPage();
-                      },
-                      isLastPage: dealsState.isLastPage,
-                    ),
-                    Divider(color: Color(0xFFFCD73D),thickness: 3,indent: 30,endIndent: 30,),
-                    DealVerticalListview(
-                      title: 'Las Mejores Promos',
-                      deals: dealsState.featuredDeals
+            dealsState.activeFilters.isEmpty
+                ? SliverToBoxAdapter(
+                    child: Column(
+                    children: [
+                      Divider(
+                        color: AppColors.rosaPrimario,
+                        thickness: 3,
                       ),
-                    
-                    Divider(color: Color(0xFFFCD73D),thickness: 3,indent: 30,endIndent: 30,),
-                    DealVerticalListview(
-                      title: 'Promos pupulares',
-                      deals: dealsState.popularDeals
+                      DealHorizontalListviewTop10(
+                        deals: dealsState.featuredDeals,
+                        title: 'Top 10 : Lugares imperdibles',
+                        loadNextPage: () {
+                          dealsNotifier.loadNextPage();
+                        },
+                        isLastPage: dealsState.isLastPage,
                       ),
-                    
-                    const SizedBox(
-                      height: 30,
-                    ),
-                  ],
-                )
-              )
-            ]
-        ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Divider(
+                        color: AppColors.amarilloAcento,
+                        thickness: 3,
+                        indent: 30,
+                        endIndent: 30,
+                      ),
+                      DealVerticalListview(
+                          title: 'Las Mejores Promos',
+                          deals: dealsState.featuredDeals),
+                      Divider(
+                        color: AppColors.amarilloAcento,
+                        thickness: 3,
+                        indent: 30,
+                        endIndent: 30,
+                      ),
+                      DealVerticalListview(
+                          title: 'Promos pupulares',
+                          deals: dealsState.popularDeals),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ))
+                : SliverList(delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final deal = dealsNotifier.filteredDeals[index];
+                      return DealPromoCard(deal: deal, index: index);
+                    },
+                    childCount: dealsNotifier.filteredDeals.length
+                  ))
+        ]),
       ),
     );
   }

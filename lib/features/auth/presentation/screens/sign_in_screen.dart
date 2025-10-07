@@ -1,9 +1,9 @@
-import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/auth/presentation/providers/providers.dart';
 import 'package:eisty/features/auth/presentation/widgets/widgets.dart';
-import 'package:eisty/features/shared/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
+    
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -24,23 +24,26 @@ class SignInScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 100,
                 ),
-                const Icon(
-                  Icons.production_quantity_limits_rounded,
-                  color: Colors.white,
-                  size: 100,
+                SvgPicture.asset(
+                  "assets/brand/Sazan_logo_2.svg",
+                  width: 170,
+                  height: 170,
                 ),
                 const SizedBox(
-                  height: 80,
+                  height: 60,
                 ),
                 Container(
+                  // color: AppColors.amarillo4,
                   height: size.height - 160,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: scaffoldBackgroundColor,
+                      color: AppColors.blancoSazan,
                       borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(100))),
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                          )),
                   child: _SigninForm(),
                 ),
               ],
@@ -80,21 +83,25 @@ class _SigninForm extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
-            height: 50,
+            height: 30,
           ),
-          const Text(
-            'Sign In',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          Text('Bienvenid@', style: AppTextStyles.h2SemiBold.copyWith(color: AppColors.casiNegro),),
+          const SizedBox(height: 5,),
+          Text(
+            'Inicia Sesión',
+            style: AppTextStyles.h1Bold.copyWith(color: AppColors.rosaPrimario),
           ),
           const SizedBox(
-            height: 20,
+            height: 30,
           ),
           CustomTextFormField(
             label: 'Email',
             keyboardType: TextInputType.emailAddress,
             prefixicon: Icons.email_rounded,
+            // fillColor: Colors.white,
             onChanged: (value) =>
                 ref.read(signinFormProvider.notifier).onEmailChanged(value),
             errorMessage:
@@ -107,6 +114,7 @@ class _SigninForm extends ConsumerWidget {
             label: 'Password',
             prefixicon: Icons.lock,
             obscureText: true,
+            // fillColor: AppColors.blancoSazan,
             onChanged: (value) =>
                 ref.read(signinFormProvider.notifier).onPasswordChanged(value),
             errorMessage: signinForm.isFormPosted
@@ -118,27 +126,57 @@ class _SigninForm extends ConsumerWidget {
           ),
           SizedBox(
             width: double.infinity,
-            height: 60,
-            child: CustomFilledButton(
-              text: 'Sign In',
-              buttonColor: Colors.black,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.casiNegro,
+                foregroundColor: AppColors.blancoSazan,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25)
+                  )
+              ),
               onPressed: signinForm.isPosting
                   ? null
-                  : ref.read(signinFormProvider.notifier).onFormSubmit
-              ,
-            ),
+                  : ref.read(signinFormProvider.notifier).onFormSubmit, 
+              child: Text('Iniciar Sesión',style: TextStyle(color: AppColors.blancoSazan))
+              )
+            
+          ),
+          const SizedBox(height: 40),
+          Text('o inicia sesión con:', style: AppTextStyles.t2Regular.copyWith(color: AppColors.rosaPrimario),),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  
+                }, 
+                icon: Icon(Icons.g_mobiledata, size: 40,color: AppColors.casiNegro,)),
+              const SizedBox(width: 20,),
+              IconButton(onPressed: () {
+                
+              }, 
+              icon: Icon(Icons.apple, size: 40, color: AppColors.casiNegro,))
+            ],
           ),
           const SizedBox(
             height: 40,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("don't have account?"),
+              Text("¿No tienes cuenta?", style: AppTextStyles.t2Regular.copyWith(color: AppColors.rosaPrimario),),
               TextButton(
                   onPressed: () {
                     context.push('/signup');
                   },
-                  child: const Text('Create here!'))
+                  child: Text("Regístrate", style: AppTextStyles.t2Regular.copyWith(
+                    color: AppColors.rosaPrimario, 
+                    fontWeight: FontWeight.bold, 
+                    decoration: TextDecoration.underline,
+                    fontSize: 16
+                    ),))
             ],
           ),
           const Spacer(flex: 1),

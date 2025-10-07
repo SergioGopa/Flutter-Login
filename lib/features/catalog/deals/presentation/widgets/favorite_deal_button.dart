@@ -48,17 +48,20 @@ class FavoriteDealButton extends ConsumerWidget {
                     offset: Offset(-1, 5)), 
                 ],
               )
-            :Icon(
-                Icons.favorite,
-                color: Colors.white,
-                size: 36,
-                shadows: [
-                  Shadow(
-                    blurRadius: 3,
-                    color: Colors.black.withValues(alpha: 1),
-                    offset: Offset(-1, 5))
-                ],
-              ), 
+            :Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.withValues(alpha: .3)
+              ),
+              child: Icon(
+                  Icons.favorite,
+                  color: Colors.white,
+                  size: 36,
+
+                ),
+            ), 
         error: (error, stackTrace) => throw UnimplementedError(), 
         loading: () => CircularProgressIndicator(strokeWidth: 2,),
         ),

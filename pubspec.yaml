@@ -53,3 +53,6 @@ flutter:
     - assets/mock/mock_restaurants.json
     - assets/mock/mock_deal_details.json
     - assets/brand/
+    - assets/legal/
+    - assets/icons/filters/
+    - assets/icons/common/

@@ -1,28 +1,26 @@
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/profile/presentation/widgets/profile_list_tile_widget.dart';
+import 'package:eisty/features/shared/presentation/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../config/menu/profile_menu_items.dart';
 
-class ProfileScreen extends StatelessWidget {
+
+class ProfileScreen extends ConsumerWidget {
   static const String name = 'profile-screen';
 
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: SvgPicture.asset(
-              "assets/brand/Sazan_logo_1.svg",
-              width: 35,
-              height: 35,
-            ),
-      ),
+
+      appBar: SazanAppBar(showLogo: true,),
       body: Column(
         children: [
-          const Divider(color: Color(0xFFCB087B),thickness: 3,),
+          Divider(color: AppColors.rosaPrimario,thickness: 3,height: 27,),
           Expanded(child: _ProfileScreen())
           ]
         ),
@@ -35,8 +33,10 @@ class _ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    
+
     return ListView.builder(
-      padding: const EdgeInsets.all(10),
       itemCount: profileMenuItems.length,
       itemBuilder: (context, index) {
         final menuItem = profileMenuItems[index];
@@ -46,8 +46,8 @@ class _ProfileScreen extends StatelessWidget {
         widgets.add(tile);
 
         if (menuItem.title != "Cerrar sesion") {
-          widgets.add(const Divider(
-            color: Colors.amber,
+          widgets.add( Divider(
+            color: colors.primary,
             thickness: 1,
             indent: 10,
             endIndent: 10,

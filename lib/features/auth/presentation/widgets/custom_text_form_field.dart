@@ -15,27 +15,34 @@ class CustomTextFormField extends StatelessWidget {
   final Color? fillColor;
   final TextStyle? hintStyle;
   final TextEditingController? controller;
+  final int? maxLines;
+  final int? minLines;
+  final Color? textColor;
 
   const CustomTextFormField({
-    super.key,
-    this.onFieldSubmitted,
-    this.onChanged,
-    this.style,
-    this.keyboardType,
-    this.validator,
-    this.obscureText = false,
+    Key? key,
     this.label,
     this.hint,
     this.errorMessage,
+    this.onFieldSubmitted,
+    this.onChanged,
+    this.obscureText = false,
+    this.keyboardType,
+    this.style,
+    this.validator,
     this.prefixicon,
     this.suffixIcon,
     this.fillColor,
-    this.hintStyle, 
+    this.hintStyle,
     this.controller,
-  });
+    this.maxLines,
+    this.minLines,
+    this.textColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final colors = Theme.of(context).colorScheme;
     final border = OutlineInputBorder(
         borderSide: const BorderSide(color: Colors.transparent),
@@ -45,7 +52,7 @@ class CustomTextFormField extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: fillColor ?? theme.inputDecorationTheme.fillColor,
           borderRadius: const BorderRadius.only(
               topLeft: borderRadius,
               bottomLeft: borderRadius,
@@ -62,27 +69,31 @@ class CustomTextFormField extends StatelessWidget {
         onChanged: onChanged,
         validator: validator,
         obscureText: obscureText,
-        keyboardType: keyboardType,
-        style: const TextStyle(
-            color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+        maxLines: obscureText ? 1 : maxLines,
+        minLines: obscureText ? 1 : minLines,
+        style: style ?? 
+        theme.textTheme.bodyLarge?.copyWith(color: textColor ?? theme.textTheme.bodyLarge?.color),
+        // style: TextStyle(
+        //     color: textColor, fontSize: 18, fontWeight: FontWeight.bold),
         decoration: InputDecoration(
-            floatingLabelStyle: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
-            enabledBorder: border,
-            focusedBorder: border,
-            errorBorder: border.copyWith(
-                borderSide: BorderSide(color: Colors.transparent)),
-            focusedErrorBorder: border.copyWith(
-                borderSide: BorderSide(color: Colors.transparent)),
-            isDense: true,
-            label: label != null ? Text(label!) : null,
-            hintText: hint,
-            hintStyle: hintStyle,
-            fillColor: fillColor,
-            errorText: errorMessage,
-            focusColor: colors.primary,
-            prefixIcon: Icon(prefixicon),
-            suffixIcon: Icon(suffixIcon)),
+          // // floatingLabelStyle: TextStyle(
+          // //     color: textColor, fontWeight: FontWeight.bold, fontSize: 18),
+          // // enabledBorder: border,
+          // // focusedBorder: border,
+          // // errorBorder: border.copyWith(
+          // //     borderSide: BorderSide(color: Colors.transparent)),
+          // // focusedErrorBorder: border.copyWith(
+          // //     borderSide: BorderSide(color: Colors.transparent)),
+          // isDense: true,
+          label: label != null ? Text(label!) : null,
+          hintText: hint,
+          hintStyle: hintStyle,
+          fillColor: fillColor,
+          errorText: errorMessage,
+          // focusColor: colors.primary,
+          prefixIcon: Icon(prefixicon),
+          suffixIcon: Icon(suffixIcon),
+        ),
       ),
     );
   }

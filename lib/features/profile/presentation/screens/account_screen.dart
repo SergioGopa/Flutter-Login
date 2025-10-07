@@ -1,3 +1,4 @@
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/auth/auth.dart';
 import 'package:eisty/features/profile/presentation/providers/providers.dart';
 import 'package:eisty/features/shared/domain/domain.dart';
@@ -22,7 +23,7 @@ class AccountScreen extends ConsumerWidget {
         if (next.successMessage != null && next.successMessage!.isNotEmpty && next.successMessage != previous?.successMessage) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(next.successMessage!),
-            backgroundColor: Colors.green,
+            backgroundColor: AppColors.verde300,
           ));
           ref.read(accountProvider.notifier).clearMessage();
         }
@@ -30,7 +31,7 @@ class AccountScreen extends ConsumerWidget {
             next.passwordErrorMessage!.isNotEmpty && next.passwordErrorMessage != previous?.passwordErrorMessage) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(next.passwordErrorMessage!),
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.rojoError,
           ));
           ref.read(accountProvider.notifier).clearMessage();
         }
@@ -80,11 +81,9 @@ class AccountScreen extends ConsumerWidget {
                   children: [
                     CircleAvatar(
                       radius: 60,
-                      backgroundColor: Colors.grey[500],
                       child: const Icon(
                         Icons.person,
                         size: 60,
-                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(
@@ -106,11 +105,10 @@ class AccountScreen extends ConsumerWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Information de perfil',
-                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               CustomTextFormField(
                 controller: nameController,
@@ -132,12 +130,9 @@ class AccountScreen extends ConsumerWidget {
                 errorMessage: accountState.errorMessage,
               ),
               const SizedBox(
-                height: 15,
+                height: 25,
               ),
 
-              const SizedBox(
-                height: 20,
-              ),
               ElevatedButton(
                   onPressed: () {
                     _confirmupdate(
@@ -153,18 +148,18 @@ class AccountScreen extends ConsumerWidget {
                       },
                     );
                   },
-                  child: const Text("Guardar cambios")),
+                  child: const Text("Guardar cambios", style: TextStyle(color: AppColors.blancoSazan), )),
               if (accountState.errorMessage != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Text(
                     accountState.errorMessage!,
-                    style: const TextStyle(color: Colors.red),
+                    style: const TextStyle(color: AppColors.rojoError),
                   ),
                 ),
 
               const Divider(
-                color: Colors.amber,
+                color: AppColors.amarilloAcento,
                 thickness: 1,
                 indent: 10,
                 endIndent: 10,
@@ -175,7 +170,6 @@ class AccountScreen extends ConsumerWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Cambiar Contraseña ',
-                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               const SizedBox(
@@ -219,7 +213,7 @@ class AccountScreen extends ConsumerWidget {
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
+                    backgroundColor: AppColors.rojoError,
                   ),
                   onPressed: () {
                     if (newPasswordController.text !=
@@ -240,8 +234,9 @@ class AccountScreen extends ConsumerWidget {
                   },
                   child: const Text(
                     'Cambiar contraseña',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: TextStyle(color: AppColors.blancoSazan),
                   )),
+                  // child: const Text("Guardar cambios", style: TextStyle(color: AppColors.blancoSazan), )),
             ],
           ),
         ));
@@ -257,10 +252,10 @@ class AccountScreen extends ConsumerWidget {
         actions: [
           TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Cancelar')),
+              child: const Text('Cancelar', style: TextStyle(fontSize: 18),)),
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Confirmar'),
+            child: const Text('Confirmar', style: TextStyle(color: AppColors.blancoSazan),),
           )
         ],
       ),

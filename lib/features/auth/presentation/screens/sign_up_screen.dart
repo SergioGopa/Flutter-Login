@@ -1,9 +1,12 @@
+import 'package:eisty/config/theme/theme.dart';
+import 'package:eisty/features/auth/auth.dart';
 import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
 import 'package:eisty/features/auth/presentation/providers/signup_form_provider.dart';
 import 'package:eisty/features/auth/presentation/widgets/widgets.dart';
-import 'package:eisty/features/shared/presentation/widgets/widgets.dart';
+import 'package:eisty/features/profile/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -12,8 +15,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
-    final textStyles = Theme.of(context).textTheme;
+    
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -22,48 +24,32 @@ class SignUpScreen extends StatelessWidget {
             child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 80,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      if (!context.canPop()) return;
-                      context.pop();
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_rounded,
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Spacer(
-                    flex: 1,
-                  ),
-                  Text(
-                    'Create account',
-                    style: textStyles.titleLarge?.copyWith(color: Colors.white),
-                  ),
-                  const Spacer(
-                    flex: 2,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 50,
-              ),
+              
+              
               Container(
-                height: size.height - 260,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: scaffoldBackgroundColor,
-                  borderRadius:
-                      const BorderRadius.only(topLeft: Radius.circular(100)),
+                    height: size.height-300,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: AppColors.rosaPrimario,
+                      borderRadius:
+                          const BorderRadius.only(
+                            bottomLeft: Radius.circular(50),
+                            bottomRight: Radius.circular(50),
+                            ),
+                    ),
+                    child: const _SignupForm(),
+                  ),
+              const SizedBox(
+                  height: 50,
                 ),
-                child: const _SignupForm(),
-              )
+                SvgPicture.asset(
+                  "assets/brand/Sazan_logo_2.svg",
+                  width: 170,
+                  height: 170,
+                ),
+                const SizedBox(
+                  height: 60,
+                ),
             ],
           ),
         )),
@@ -83,7 +69,6 @@ class _SignupForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textStyles = Theme.of(context).textTheme;
     final signupForm = ref.watch(signupFormProvider);
 
     ref.listen(
@@ -101,21 +86,21 @@ class _SignupForm extends ConsumerWidget {
           const SizedBox(
             height: 50,
           ),
+          Text('Bienvenid@', style: AppTextStyles.h2SemiBold.copyWith(color: AppColors.blancoSazan),),
+          const SizedBox(height: 5,),
           Text(
-            'New Account',
-            style: textStyles.titleMedium,
+            'Inicia Sesión',
+            style: AppTextStyles.h1Bold.copyWith(color: AppColors.blancoSazan),
           ),
-          const SizedBox(
-            height: 50,
-          ),
+          const SizedBox(height: 10,),
           CustomTextFormField(
-            label: 'Full name',
+            label: 'Nombre completo',
             keyboardType: TextInputType.emailAddress,
             onChanged: (value) => ref.read(signupFormProvider.notifier).onNameChanged(value),
             errorMessage: signupForm.isFormPosted ? signupForm.username.errorMessage:null,
           ),
           const SizedBox(
-            height: 30,
+            height: 10,
           ),
           CustomTextFormField(
             label: 'Email',
@@ -124,17 +109,17 @@ class _SignupForm extends ConsumerWidget {
             errorMessage: signupForm.isFormPosted ? signupForm.email.errorMessage: null,
           ),
           const SizedBox(
-            height: 30,
+            height: 10,
           ),
           CustomTextFormField(
-            label: 'Password',
+            label: 'Contrasena',
             obscureText: true,
             onChanged: (value) => ref.read(signupFormProvider.notifier).onPasswordChanged(value),
             errorMessage: signupForm.isFormPosted ? signupForm.password.errorMessage: null,
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           CustomTextFormField(
-            label: 'Repeat Password',
+            label: 'Confirma contrasena',
             obscureText: true,
             onChanged: (value) => ref.read(signupFormProvider.notifier).onPasswordChanged(value),
             errorMessage: signupForm.isFormPosted ? signupForm.password.errorMessage: null,
@@ -145,21 +130,41 @@ class _SignupForm extends ConsumerWidget {
           SizedBox(
             width: double.infinity,
             height: 60,
-            child: CustomFilledButton(
-              text: 'Create',
-              buttonColor: Colors.black,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.casiNegro,
+                foregroundColor: AppColors.blancoSazan,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25)
+                  )
+              ),
               onPressed: signupForm.isPosting
                   ? null
-                  : ref.read(signupFormProvider.notifier).onFormSubmit,
-            ),
+                  : ref.read(signupFormProvider.notifier).onFormSubmit, 
+              child: Text('Regístrate',style: TextStyle(color: AppColors.blancoSazan))
+              ),  
           ),
-          const Spacer(
-            flex: 2,
+          
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Al unirte aceptas'),
+              TextButton(
+                  onPressed: () {
+                    context.push('/terms-signup');
+                  },
+                  child: Text('Términos y condiciones', 
+                  style: AppTextStyles.t1Bold.copyWith(
+                    color: AppColors.blancoSazan, 
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    )))
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Do you already have an account?'),
+              const Text('¿Ya tienes cuenta?'),
               TextButton(
                   onPressed: () {
                     if (context.canPop()) {
@@ -167,7 +172,25 @@ class _SignupForm extends ConsumerWidget {
                     }
                     context.go('/signin');
                   },
-                  child: const Text('Sign In here!'))
+                  child: Text('Inicia sesión', style: AppTextStyles.t1Bold.copyWith(color: AppColors.blancoSazan, fontWeight: FontWeight.bold)))
+            ],
+          ),
+          const SizedBox(height: 5),
+          Text('o inicia sesión con:', style: AppTextStyles.t2Regular.copyWith(color: AppColors.blancoSazan),),
+          const SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  
+                }, 
+                icon: Icon(Icons.g_mobiledata, size: 40,color: AppColors.casiNegro,)),
+              const SizedBox(width: 20,),
+              IconButton(onPressed: () {
+                
+              }, 
+              icon: Icon(Icons.apple, size: 40, color: AppColors.casiNegro,))
             ],
           ),
           const Spacer(

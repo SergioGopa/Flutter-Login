@@ -1,7 +1,8 @@
+import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/catalog/deals/domain/domain.dart';
-import 'package:eisty/features/catalog/deals/presentation/providers/deals_repository_provider.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/search/search_deals_provider.dart';
 import 'package:eisty/features/today/presentation/delegate/delegates.dart';
+import 'package:eisty/features/today/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,18 +26,14 @@ class SearchBarWidget extends ConsumerWidget {
                   final searchQuery = ref.read(searchQueryProvider);
 
                   showSearch<Deal?>(
-                      query: searchQuery,
-                      context: context,
-                      delegate: SearchDealDelegate(
-                        initialDeals: searchedDeals,
-                        searchDeals: ref.read(searchedDealsProvider.notifier).searchDealsByQuery
-                        // (query) {
-                        //   ref.read(searchQueryProvider.notifier).update(
-                        //         (state) => query,
-                        //       );
-                        //   return dealRepository.searchDeals(query);
-                        // },
-                      )).then(
+                          query: searchQuery,
+                          context: context,
+                          delegate: SearchDealDelegate(
+                              initialDeals: searchedDeals,
+                              searchDeals: ref
+                                  .read(searchedDealsProvider.notifier)
+                                  .searchDealsByQuery))
+                      .then(
                     (deal) {
                       if (deal == null) return;
 
@@ -46,7 +43,8 @@ class SearchBarWidget extends ConsumerWidget {
                 },
                 child: HeroIcon(
                   HeroIcons.magnifyingGlass,
-                  color: Colors.white,
+                  color:
+                      Theme.of(context).iconTheme.color ?? AppColors.casiNegro,
                   size: 32,
                 )),
             const Spacer(),
@@ -54,13 +52,24 @@ class SearchBarWidget extends ConsumerWidget {
               "assets/brand/Sazan_logo_1.svg",
               width: 30,
               height: 30,
+              colorFilter: ColorFilter.mode(
+                  Theme.of(context).iconTheme.color ?? AppColors.casiNegro,
+                  BlendMode.srcIn),
             ),
             const Spacer(),
             GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    builder: (context) => FilterBottomSheet(),
+                  );
+                },
                 child: HeroIcon(
                   HeroIcons.adjustmentsHorizontal,
-                  color: Colors.white,
+                  color:
+                      Theme.of(context).iconTheme.color ?? AppColors.casiNegro,
                   size: 32,
                 ))
           ],

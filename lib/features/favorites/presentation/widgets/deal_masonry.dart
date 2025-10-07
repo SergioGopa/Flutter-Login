@@ -39,21 +39,23 @@ class _DealMasonryState extends State<DealMasonry> {
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       controller: scrollController,
       crossAxisCount: 3,
       mainAxisSpacing: 10,
       crossAxisSpacing: 10,
-      itemCount: widget.deals.length,
+      itemCount: widget.deals.length + 1,
       itemBuilder: (context, index) {
         if (index == 1) {
           return SizedBox(
             height: 30,
           );
         }
-        return DealPosterLink(deal: widget.deals[index]);
+        final dealIndex = index > 1 ? index - 1 : index;
+
+        return DealPosterLink(deal: widget.deals[dealIndex]);
       },
     );
   }

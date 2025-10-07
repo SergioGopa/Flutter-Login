@@ -1,4 +1,3 @@
-import 'package:eisty/features/catalog/deals/domain/domain.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/deal_details_provider.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/deal_provider.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/providers.dart';

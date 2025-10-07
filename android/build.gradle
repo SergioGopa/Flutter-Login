@@ -1,18 +1,48 @@
+// android/build.gradle (Groovy version — WORKING for Flutter 3.29 + isar_flutter_libs)
+
 allprojects {
     repositories {
         google()
         mavenCentral()
     }
+
+    subprojects {
+        afterEvaluate { project ->
+            if (project.plugins.hasPlugin("com.android.application") ||
+                project.plugins.hasPlugin("com.android.library")) {
+
+                project.android {
+                    compileSdkVersion 35
+                    buildToolsVersion "35.0.0"
+                    ndkVersion "27.0.12077973"
+                }
+            }
+
+            if (project.hasProperty("android")) {
+                project.android {
+                    if (namespace == null) {
+                        namespace project.group
+                    }
+                }
+            }
+
+            project.configurations.all {
+                resolutionStrategy {
+                    force "androidx.core:core:1.9.0"
+                }
+            }
+        }
+    }
 }
 
 rootProject.buildDir = "../build"
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// Clean task
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }

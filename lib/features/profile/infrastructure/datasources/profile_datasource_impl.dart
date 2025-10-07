@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:eisty/features/shared/infrastructure/services/secure_storage_service.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:eisty/config/config.dart';
 import 'package:eisty/features/auth/auth.dart';
