@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../restaurants/presentation/providers/providers.dart';
 
 class DealDetailCountdown extends ConsumerWidget {
   final String restaurantId;
@@ -13,16 +12,10 @@ class DealDetailCountdown extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final restaurantState = ref.watch(restaurantProvider(restaurantId));
-    final restaurant = restaurantState.restaurant;
+    // final restaurantState = ref.watch(restaurantProvider(restaurantId));
+    // final restaurant = restaurantState.restaurant;
     final now = DateTime.now();
     final diff = endDate.difference(now);
-
-    // if (restaurant == null) {
-    //   return Center(
-    //     child: CircularProgressIndicator(),
-    //   );
-    // }
 
     String message;
 

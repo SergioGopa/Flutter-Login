@@ -14,6 +14,7 @@ class DealEntity {
   late DateTime validFrom;
   late DateTime validUntil;
   late String restaurantId;
+  late String restaurantName;
   late double originalPrice;
   late double discountedPrice;
 
@@ -21,7 +22,17 @@ class DealEntity {
   bool isPopular = false;
   bool isUpcoming = false;
   List<String> categories = [];
+  List<String> tags = [];
 
   double rating = 0.0;
   int reviewsCount = 0;
+
+  List<String> validDaysOfWeek = [];
+  String? timeWindowsJson;
+  double minOrderAmount = 0.0;
+  bool dineInOnly = false;
+  bool delivery = false;
+  bool takeout = false;
+  bool adultsOnly = false;
+  bool petFriendly = false;
 }

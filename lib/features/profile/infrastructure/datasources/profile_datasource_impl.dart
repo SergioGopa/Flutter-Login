@@ -76,9 +76,7 @@ class ProfileDatasourceImpl extends ProfileDatasource {
   @override
   Future<User> updateUser(String id, Map<String, dynamic> payload) async {
     final token = await _getToken();
-    final fullUrl = '${dio.options.baseUrl}/users/$id';
-    print('Token being sent: $token');
-    print('Calling PUT $fullUrl with payload: $payload');
+    // final fullUrl = '${dio.options.baseUrl}/users/$id';
 
     try {
       final response = await dio.put(

@@ -1,9 +1,5 @@
 import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/auth/auth.dart';
-import 'package:eisty/features/auth/presentation/providers/auth_provider.dart';
-import 'package:eisty/features/auth/presentation/providers/signup_form_provider.dart';
-import 'package:eisty/features/auth/presentation/widgets/widgets.dart';
-import 'package:eisty/features/profile/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';

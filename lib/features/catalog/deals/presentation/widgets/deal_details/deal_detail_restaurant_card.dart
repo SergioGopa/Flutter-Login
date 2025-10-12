@@ -12,7 +12,7 @@ class DealDetailRestaurantCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final restaurantState = ref.watch(restaurantProvider(restaurantId));
-    final textTheme = Theme.of(context).textTheme;
+    
     final decoration =
         BoxDecoration(
           shape: BoxShape.circle,

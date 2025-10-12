@@ -48,6 +48,22 @@ class FiltersNotifier extends StateNotifier<Filters> {
     state = state.copyWith(delivery: !state.delivery);
   }
 
+  void toggleFeatured() {
+    state = state.copyWith(featured:  !state.featured);
+  }
+  
+  void togglePopular() {
+    state = state.copyWith(popular:  !state.popular);
+  }
+
+  void toggleUpcoming() {
+    state = state.copyWith(upcoming:  !state.upcoming);
+  }
+  
+  void toggleValidToday() {
+    state = state.copyWith(validToday: !state.validToday);
+  }
+
   void reset() {
     state = Filters.initial();
   }

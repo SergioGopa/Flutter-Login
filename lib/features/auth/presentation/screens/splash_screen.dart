@@ -38,9 +38,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     final clusterW = size.width;
-    final clusterH = clusterW;
 
     return Scaffold(
       backgroundColor: Colors.black,

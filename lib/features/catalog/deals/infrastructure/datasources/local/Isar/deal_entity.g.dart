@@ -17,83 +17,133 @@ const DealEntitySchema = CollectionSchema(
   name: r'DealEntity',
   id: -5119226446745691332,
   properties: {
-    r'categories': PropertySchema(
+    r'adultsOnly': PropertySchema(
       id: 0,
+      name: r'adultsOnly',
+      type: IsarType.bool,
+    ),
+    r'categories': PropertySchema(
+      id: 1,
       name: r'categories',
       type: IsarType.stringList,
     ),
+    r'delivery': PropertySchema(
+      id: 2,
+      name: r'delivery',
+      type: IsarType.bool,
+    ),
     r'description': PropertySchema(
-      id: 1,
+      id: 3,
       name: r'description',
       type: IsarType.string,
     ),
+    r'dineInOnly': PropertySchema(
+      id: 4,
+      name: r'dineInOnly',
+      type: IsarType.bool,
+    ),
     r'discountedPrice': PropertySchema(
-      id: 2,
+      id: 5,
       name: r'discountedPrice',
       type: IsarType.double,
     ),
     r'id': PropertySchema(
-      id: 3,
+      id: 6,
       name: r'id',
       type: IsarType.string,
     ),
     r'imageUrl': PropertySchema(
-      id: 4,
+      id: 7,
       name: r'imageUrl',
       type: IsarType.string,
     ),
     r'isFeatured': PropertySchema(
-      id: 5,
+      id: 8,
       name: r'isFeatured',
       type: IsarType.bool,
     ),
     r'isPopular': PropertySchema(
-      id: 6,
+      id: 9,
       name: r'isPopular',
       type: IsarType.bool,
     ),
     r'isUpcoming': PropertySchema(
-      id: 7,
+      id: 10,
       name: r'isUpcoming',
       type: IsarType.bool,
     ),
+    r'minOrderAmount': PropertySchema(
+      id: 11,
+      name: r'minOrderAmount',
+      type: IsarType.double,
+    ),
     r'originalPrice': PropertySchema(
-      id: 8,
+      id: 12,
       name: r'originalPrice',
       type: IsarType.double,
     ),
+    r'petFriendly': PropertySchema(
+      id: 13,
+      name: r'petFriendly',
+      type: IsarType.bool,
+    ),
     r'rating': PropertySchema(
-      id: 9,
+      id: 14,
       name: r'rating',
       type: IsarType.double,
     ),
     r'restaurantId': PropertySchema(
-      id: 10,
+      id: 15,
       name: r'restaurantId',
       type: IsarType.string,
     ),
+    r'restaurantName': PropertySchema(
+      id: 16,
+      name: r'restaurantName',
+      type: IsarType.string,
+    ),
     r'reviewsCount': PropertySchema(
-      id: 11,
+      id: 17,
       name: r'reviewsCount',
       type: IsarType.long,
     ),
+    r'tags': PropertySchema(
+      id: 18,
+      name: r'tags',
+      type: IsarType.stringList,
+    ),
+    r'takeout': PropertySchema(
+      id: 19,
+      name: r'takeout',
+      type: IsarType.bool,
+    ),
+    r'timeWindowsJson': PropertySchema(
+      id: 20,
+      name: r'timeWindowsJson',
+      type: IsarType.string,
+    ),
     r'title': PropertySchema(
-      id: 12,
+      id: 21,
       name: r'title',
       type: IsarType.string,
     ),
     r'type': PropertySchema(
-      id: 13,
+      id: 22,
       name: r'type',
       type: IsarType.string,
     ),
+    r'validDaysOfWeek': PropertySchema(
+      id: 23,
+      name: r'validDaysOfWeek',
+      type: IsarType.stringList,
+    ),
     r'validFrom': PropertySchema(
-      id: 14,
+      id: 24,
       name: r'validFrom',
       type: IsarType.dateTime,
     ),
     r'validUntil': PropertySchema(
-      id: 15,
+      id: 25,
       name: r'validUntil',
       type: IsarType.dateTime,
     )
@@ -129,8 +179,29 @@ int _dealEntityEstimateSize(
   bytesCount += 3 + object.id.length * 3;
   bytesCount += 3 + object.imageUrl.length * 3;
   bytesCount += 3 + object.restaurantId.length * 3;
+  bytesCount += 3 + object.restaurantName.length * 3;
+  bytesCount += 3 + object.tags.length * 3;
+  {
+    for (var i = 0; i < object.tags.length; i++) {
+      final value = object.tags[i];
+      bytesCount += value.length * 3;
+    }
+  }
+  {
+    final value = object.timeWindowsJson;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   bytesCount += 3 + object.title.length * 3;
   bytesCount += 3 + object.type.length * 3;
+  bytesCount += 3 + object.validDaysOfWeek.length * 3;
+  {
+    for (var i = 0; i < object.validDaysOfWeek.length; i++) {
+      final value = object.validDaysOfWeek[i];
+      bytesCount += value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
@@ -140,22 +211,32 @@ void _dealEntitySerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeStringList(offsets[0], object.categories);
-  writer.writeString(offsets[1], object.description);
-  writer.writeDouble(offsets[2], object.discountedPrice);
-  writer.writeString(offsets[3], object.id);
-  writer.writeString(offsets[4], object.imageUrl);
-  writer.writeBool(offsets[5], object.isFeatured);
-  writer.writeBool(offsets[6], object.isPopular);
-  writer.writeBool(offsets[7], object.isUpcoming);
-  writer.writeDouble(offsets[8], object.originalPrice);
-  writer.writeDouble(offsets[9], object.rating);
-  writer.writeString(offsets[10], object.restaurantId);
-  writer.writeLong(offsets[11], object.reviewsCount);
-  writer.writeString(offsets[12], object.title);
-  writer.writeString(offsets[13], object.type);
-  writer.writeDateTime(offsets[14], object.validFrom);
-  writer.writeDateTime(offsets[15], object.validUntil);
+  writer.writeBool(offsets[0], object.adultsOnly);
+  writer.writeStringList(offsets[1], object.categories);
+  writer.writeBool(offsets[2], object.delivery);
+  writer.writeString(offsets[3], object.description);
+  writer.writeBool(offsets[4], object.dineInOnly);
+  writer.writeDouble(offsets[5], object.discountedPrice);
+  writer.writeString(offsets[6], object.id);
+  writer.writeString(offsets[7], object.imageUrl);
+  writer.writeBool(offsets[8], object.isFeatured);
+  writer.writeBool(offsets[9], object.isPopular);
+  writer.writeBool(offsets[10], object.isUpcoming);
+  writer.writeDouble(offsets[11], object.minOrderAmount);
+  writer.writeDouble(offsets[12], object.originalPrice);
+  writer.writeBool(offsets[13], object.petFriendly);
+  writer.writeDouble(offsets[14], object.rating);
+  writer.writeString(offsets[15], object.restaurantId);
+  writer.writeString(offsets[16], object.restaurantName);
+  writer.writeLong(offsets[17], object.reviewsCount);
+  writer.writeStringList(offsets[18], object.tags);
+  writer.writeBool(offsets[19], object.takeout);
+  writer.writeString(offsets[20], object.timeWindowsJson);
+  writer.writeString(offsets[21], object.title);
+  writer.writeString(offsets[22], object.type);
+  writer.writeStringList(offsets[23], object.validDaysOfWeek);
+  writer.writeDateTime(offsets[24], object.validFrom);
+  writer.writeDateTime(offsets[25], object.validUntil);
 }
 
 DealEntity _dealEntityDeserialize(
@@ -165,23 +246,33 @@ DealEntity _dealEntityDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = DealEntity();
-  object.categories = reader.readStringList(offsets[0]) ?? [];
-  object.description = reader.readString(offsets[1]);
-  object.discountedPrice = reader.readDouble(offsets[2]);
-  object.id = reader.readString(offsets[3]);
-  object.imageUrl = reader.readString(offsets[4]);
-  object.isFeatured = reader.readBool(offsets[5]);
-  object.isPopular = reader.readBool(offsets[6]);
-  object.isUpcoming = reader.readBool(offsets[7]);
+  object.adultsOnly = reader.readBool(offsets[0]);
+  object.categories = reader.readStringList(offsets[1]) ?? [];
+  object.delivery = reader.readBool(offsets[2]);
+  object.description = reader.readString(offsets[3]);
+  object.dineInOnly = reader.readBool(offsets[4]);
+  object.discountedPrice = reader.readDouble(offsets[5]);
+  object.id = reader.readString(offsets[6]);
+  object.imageUrl = reader.readString(offsets[7]);
+  object.isFeatured = reader.readBool(offsets[8]);
+  object.isPopular = reader.readBool(offsets[9]);
+  object.isUpcoming = reader.readBool(offsets[10]);
   object.isarId = id;
-  object.originalPrice = reader.readDouble(offsets[8]);
-  object.rating = reader.readDouble(offsets[9]);
-  object.restaurantId = reader.readString(offsets[10]);
-  object.reviewsCount = reader.readLong(offsets[11]);
-  object.title = reader.readString(offsets[12]);
-  object.type = reader.readString(offsets[13]);
-  object.validFrom = reader.readDateTime(offsets[14]);
-  object.validUntil = reader.readDateTime(offsets[15]);
+  object.minOrderAmount = reader.readDouble(offsets[11]);
+  object.originalPrice = reader.readDouble(offsets[12]);
+  object.petFriendly = reader.readBool(offsets[13]);
+  object.rating = reader.readDouble(offsets[14]);
+  object.restaurantId = reader.readString(offsets[15]);
+  object.restaurantName = reader.readString(offsets[16]);
+  object.reviewsCount = reader.readLong(offsets[17]);
+  object.tags = reader.readStringList(offsets[18]) ?? [];
+  object.takeout = reader.readBool(offsets[19]);
+  object.timeWindowsJson = reader.readStringOrNull(offsets[20]);
+  object.title = reader.readString(offsets[21]);
+  object.type = reader.readString(offsets[22]);
+  object.validDaysOfWeek = reader.readStringList(offsets[23]) ?? [];
+  object.validFrom = reader.readDateTime(offsets[24]);
+  object.validUntil = reader.readDateTime(offsets[25]);
   return object;
 }
 
@@ -193,36 +284,56 @@ P _dealEntityDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringList(offset) ?? []) as P;
+      return (reader.readBool(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringList(offset) ?? []) as P;
     case 2:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 3:
       return (reader.readString(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 5:
-      return (reader.readBool(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 6:
-      return (reader.readBool(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 7:
-      return (reader.readBool(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 8:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 9:
-      return (reader.readDouble(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 10:
-      return (reader.readString(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 11:
-      return (reader.readLong(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 12:
-      return (reader.readString(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 13:
-      return (reader.readString(offset)) as P;
+      return (reader.readBool(offset)) as P;
     case 14:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 15:
+      return (reader.readString(offset)) as P;
+    case 16:
+      return (reader.readString(offset)) as P;
+    case 17:
+      return (reader.readLong(offset)) as P;
+    case 18:
+      return (reader.readStringList(offset) ?? []) as P;
+    case 19:
+      return (reader.readBool(offset)) as P;
+    case 20:
+      return (reader.readStringOrNull(offset)) as P;
+    case 21:
+      return (reader.readString(offset)) as P;
+    case 22:
+      return (reader.readString(offset)) as P;
+    case 23:
+      return (reader.readStringList(offset) ?? []) as P;
+    case 24:
+      return (reader.readDateTime(offset)) as P;
+    case 25:
       return (reader.readDateTime(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -324,6 +435,16 @@ extension DealEntityQueryWhere
 
 extension DealEntityQueryFilter
     on QueryBuilder<DealEntity, DealEntity, QFilterCondition> {
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> adultsOnlyEqualTo(
+      bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'adultsOnly',
+        value: value,
+      ));
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
       categoriesElementEqualTo(
     String value, {
@@ -549,6 +670,16 @@ extension DealEntityQueryFilter
     });
   }
 
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> deliveryEqualTo(
+      bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'delivery',
+        value: value,
+      ));
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
       descriptionEqualTo(
     String value, {
@@ -681,6 +812,16 @@ extension DealEntityQueryFilter
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'description',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> dineInOnlyEqualTo(
+      bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dineInOnly',
+        value: value,
       ));
     });
   }
@@ -1099,6 +1240,72 @@ extension DealEntityQueryFilter
   }
 
   QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      minOrderAmountEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'minOrderAmount',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      minOrderAmountGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'minOrderAmount',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      minOrderAmountLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'minOrderAmount',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      minOrderAmountBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'minOrderAmount',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
       originalPriceEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -1160,6 +1367,16 @@ extension DealEntityQueryFilter
         upper: upper,
         includeUpper: includeUpper,
         epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      petFriendlyEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'petFriendly',
+        value: value,
       ));
     });
   }
@@ -1363,6 +1580,142 @@ extension DealEntityQueryFilter
   }
 
   QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'restaurantName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'restaurantName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'restaurantName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'restaurantName',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'restaurantName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'restaurantName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'restaurantName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'restaurantName',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'restaurantName',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      restaurantNameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'restaurantName',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
       reviewsCountEqualTo(int value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1414,6 +1767,392 @@ extension DealEntityQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tags',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'tags',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'tags',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'tags',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'tags',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'tags',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'tags',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'tags',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'tags',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsElementIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'tags',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> tagsLengthEqualTo(
+      int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'tags',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> tagsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'tags',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> tagsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'tags',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'tags',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      tagsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'tags',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> tagsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'tags',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> takeoutEqualTo(
+      bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'takeout',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'timeWindowsJson',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'timeWindowsJson',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'timeWindowsJson',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'timeWindowsJson',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'timeWindowsJson',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'timeWindowsJson',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'timeWindowsJson',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'timeWindowsJson',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'timeWindowsJson',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'timeWindowsJson',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'timeWindowsJson',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      timeWindowsJsonIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'timeWindowsJson',
+        value: '',
       ));
     });
   }
@@ -1679,6 +2418,233 @@ extension DealEntityQueryFilter
     });
   }
 
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'validDaysOfWeek',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'validDaysOfWeek',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'validDaysOfWeek',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'validDaysOfWeek',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'validDaysOfWeek',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'validDaysOfWeek',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementContains(String value,
+          {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'validDaysOfWeek',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementMatches(String pattern,
+          {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'validDaysOfWeek',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'validDaysOfWeek',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekElementIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'validDaysOfWeek',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekLengthEqualTo(int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'validDaysOfWeek',
+        length,
+        true,
+        length,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'validDaysOfWeek',
+        0,
+        true,
+        0,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'validDaysOfWeek',
+        0,
+        false,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'validDaysOfWeek',
+        0,
+        true,
+        length,
+        include,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'validDaysOfWeek',
+        length,
+        include,
+        999999,
+        true,
+      );
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition>
+      validDaysOfWeekLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.listLength(
+        r'validDaysOfWeek',
+        lower,
+        includeLower,
+        upper,
+        includeUpper,
+      );
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterFilterCondition> validFromEqualTo(
       DateTime value) {
     return QueryBuilder.apply(this, (query) {
@@ -1797,6 +2763,30 @@ extension DealEntityQueryLinks
 
 extension DealEntityQuerySortBy
     on QueryBuilder<DealEntity, DealEntity, QSortBy> {
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByAdultsOnly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'adultsOnly', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByAdultsOnlyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'adultsOnly', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByDelivery() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'delivery', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByDeliveryDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'delivery', Sort.desc);
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByDescription() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.asc);
@@ -1806,6 +2796,18 @@ extension DealEntityQuerySortBy
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByDescriptionDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByDineInOnly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dineInOnly', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByDineInOnlyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dineInOnly', Sort.desc);
     });
   }
 
@@ -1882,6 +2884,19 @@ extension DealEntityQuerySortBy
     });
   }
 
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByMinOrderAmount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'minOrderAmount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy>
+      sortByMinOrderAmountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'minOrderAmount', Sort.desc);
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByOriginalPrice() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'originalPrice', Sort.asc);
@@ -1891,6 +2906,18 @@ extension DealEntityQuerySortBy
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByOriginalPriceDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'originalPrice', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByPetFriendly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'petFriendly', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByPetFriendlyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'petFriendly', Sort.desc);
     });
   }
 
@@ -1918,6 +2945,19 @@ extension DealEntityQuerySortBy
     });
   }
 
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByRestaurantName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'restaurantName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy>
+      sortByRestaurantNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'restaurantName', Sort.desc);
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByReviewsCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reviewsCount', Sort.asc);
@@ -1927,6 +2967,31 @@ extension DealEntityQuerySortBy
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByReviewsCountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reviewsCount', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByTakeout() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'takeout', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByTakeoutDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'takeout', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> sortByTimeWindowsJson() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timeWindowsJson', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy>
+      sortByTimeWindowsJsonDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timeWindowsJson', Sort.desc);
     });
   }
 
@@ -1981,6 +3046,30 @@ extension DealEntityQuerySortBy
 
 extension DealEntityQuerySortThenBy
     on QueryBuilder<DealEntity, DealEntity, QSortThenBy> {
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByAdultsOnly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'adultsOnly', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByAdultsOnlyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'adultsOnly', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByDelivery() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'delivery', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByDeliveryDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'delivery', Sort.desc);
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByDescription() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.asc);
@@ -1990,6 +3079,18 @@ extension DealEntityQuerySortThenBy
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByDescriptionDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'description', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByDineInOnly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dineInOnly', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByDineInOnlyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'dineInOnly', Sort.desc);
     });
   }
 
@@ -2078,6 +3179,19 @@ extension DealEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByMinOrderAmount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'minOrderAmount', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy>
+      thenByMinOrderAmountDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'minOrderAmount', Sort.desc);
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByOriginalPrice() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'originalPrice', Sort.asc);
@@ -2087,6 +3201,18 @@ extension DealEntityQuerySortThenBy
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByOriginalPriceDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'originalPrice', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByPetFriendly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'petFriendly', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByPetFriendlyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'petFriendly', Sort.desc);
     });
   }
 
@@ -2114,6 +3240,19 @@ extension DealEntityQuerySortThenBy
     });
   }
 
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByRestaurantName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'restaurantName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy>
+      thenByRestaurantNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'restaurantName', Sort.desc);
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByReviewsCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reviewsCount', Sort.asc);
@@ -2123,6 +3262,31 @@ extension DealEntityQuerySortThenBy
   QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByReviewsCountDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'reviewsCount', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByTakeout() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'takeout', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByTakeoutDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'takeout', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy> thenByTimeWindowsJson() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timeWindowsJson', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QAfterSortBy>
+      thenByTimeWindowsJsonDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timeWindowsJson', Sort.desc);
     });
   }
 
@@ -2177,9 +3341,21 @@ extension DealEntityQuerySortThenBy
 
 extension DealEntityQueryWhereDistinct
     on QueryBuilder<DealEntity, DealEntity, QDistinct> {
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByAdultsOnly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'adultsOnly');
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByCategories() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'categories');
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByDelivery() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'delivery');
     });
   }
 
@@ -2187,6 +3363,12 @@ extension DealEntityQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'description', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByDineInOnly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'dineInOnly');
     });
   }
 
@@ -2228,9 +3410,21 @@ extension DealEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByMinOrderAmount() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'minOrderAmount');
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByOriginalPrice() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'originalPrice');
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByPetFriendly() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'petFriendly');
     });
   }
 
@@ -2247,9 +3441,37 @@ extension DealEntityQueryWhereDistinct
     });
   }
 
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByRestaurantName(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'restaurantName',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByReviewsCount() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'reviewsCount');
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByTags() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'tags');
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByTakeout() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'takeout');
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByTimeWindowsJson(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'timeWindowsJson',
+          caseSensitive: caseSensitive);
     });
   }
 
@@ -2264,6 +3486,12 @@ extension DealEntityQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'type', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<DealEntity, DealEntity, QDistinct> distinctByValidDaysOfWeek() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'validDaysOfWeek');
     });
   }
 
@@ -2288,6 +3516,12 @@ extension DealEntityQueryProperty
     });
   }
 
+  QueryBuilder<DealEntity, bool, QQueryOperations> adultsOnlyProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'adultsOnly');
+    });
+  }
+
   QueryBuilder<DealEntity, List<String>, QQueryOperations>
       categoriesProperty() {
     return QueryBuilder.apply(this, (query) {
@@ -2295,9 +3529,21 @@ extension DealEntityQueryProperty
     });
   }
 
+  QueryBuilder<DealEntity, bool, QQueryOperations> deliveryProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'delivery');
+    });
+  }
+
   QueryBuilder<DealEntity, String, QQueryOperations> descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
+    });
+  }
+
+  QueryBuilder<DealEntity, bool, QQueryOperations> dineInOnlyProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'dineInOnly');
     });
   }
 
@@ -2337,9 +3583,21 @@ extension DealEntityQueryProperty
     });
   }
 
+  QueryBuilder<DealEntity, double, QQueryOperations> minOrderAmountProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'minOrderAmount');
+    });
+  }
+
   QueryBuilder<DealEntity, double, QQueryOperations> originalPriceProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'originalPrice');
+    });
+  }
+
+  QueryBuilder<DealEntity, bool, QQueryOperations> petFriendlyProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'petFriendly');
     });
   }
 
@@ -2355,9 +3613,34 @@ extension DealEntityQueryProperty
     });
   }
 
+  QueryBuilder<DealEntity, String, QQueryOperations> restaurantNameProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'restaurantName');
+    });
+  }
+
   QueryBuilder<DealEntity, int, QQueryOperations> reviewsCountProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'reviewsCount');
+    });
+  }
+
+  QueryBuilder<DealEntity, List<String>, QQueryOperations> tagsProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'tags');
+    });
+  }
+
+  QueryBuilder<DealEntity, bool, QQueryOperations> takeoutProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'takeout');
+    });
+  }
+
+  QueryBuilder<DealEntity, String?, QQueryOperations>
+      timeWindowsJsonProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'timeWindowsJson');
     });
   }
 
@@ -2370,6 +3653,13 @@ extension DealEntityQueryProperty
   QueryBuilder<DealEntity, String, QQueryOperations> typeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'type');
+    });
+  }
+
+  QueryBuilder<DealEntity, List<String>, QQueryOperations>
+      validDaysOfWeekProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'validDaysOfWeek');
     });
   }
 

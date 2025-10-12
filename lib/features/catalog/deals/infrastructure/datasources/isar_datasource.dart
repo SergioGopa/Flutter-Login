@@ -55,7 +55,7 @@ class IsarDatasource extends LocalStorageDatasource {
     if (existing != null) {
       await isar.writeTxn(
         () async {
-          await isar.dealEntitys.delete(existing.isarId!);
+          await isar.dealEntitys.delete(existing.isarId);
         },
       );
     } else {

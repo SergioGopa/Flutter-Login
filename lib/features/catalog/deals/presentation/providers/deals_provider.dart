@@ -1,24 +1,39 @@
 import 'package:eisty/features/catalog/deals/domain/domain.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/providers.dart';
-import 'package:flutter/material.dart';
+import 'package:eisty/features/catalog/restaurants/presentation/providers/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final dealsProvider = StateNotifierProvider<DealsNotifier, DealsState>(
   (ref) {
     final dealsRepository = ref.watch(dealsRepositoryProvider);
-    return DealsNotifier(dealsRepository);
+    return DealsNotifier(dealsRepository, ref);
   },
 );
 
 class DealsNotifier extends StateNotifier<DealsState> {
   final DealsRepository dealsRepository;
+  final Ref ref;
 
-  DealsNotifier(this.dealsRepository) : super(DealsState()) {
+  DealsNotifier(this.dealsRepository, this.ref) : super(DealsState()) {
     loadNextPage();
   }
 
   void applyFilters(Map<String, dynamic> filters) {
-    state = state.copyWith(activeFilters: filters);
+    final cleanedFilters = Map<String, dynamic>.from(filters)
+      ..removeWhere(
+        (key, value) =>
+            value == false || value == null || (value is List && value.isEmpty),
+      );
+
+    if (cleanedFilters.isEmpty) {
+      state = state.copyWith(activeFilters: {});
+    } else {
+      state = state.copyWith(activeFilters: cleanedFilters);
+    }
+  }
+
+  void clearFilters() {
+    state = state.copyWith(activeFilters: {});
   }
 
   List<Deal> get filteredDeals {
@@ -37,8 +52,25 @@ class DealsNotifier extends StateNotifier<DealsState> {
           if (!matches) return false;
         }
 
-        //Valid Todat filter
-        final validToday = filters['validToday'] as bool ?? false;
+        //Open Now
+        if ((filters['openNow'] ?? false) == true) {
+          final restaurantState = ref.read(restaurantsProvider);
+
+          final restaurantList = restaurantState.allRestaurants.where(
+            (e) => e.id == deal.restaurantId,
+          );
+          final restaurant =
+              restaurantList.isNotEmpty ? restaurantList.first : null;
+
+          if (restaurant == null || !restaurant.isOpenNow()) {
+            return false;
+          }
+        }
+
+        //Valid Today filter
+        final validToday = filters['validToday'] is bool
+            ? filters['validToday'] as bool
+            : false;
 
         if (validToday) {
           final now = DateTime.now();
@@ -47,30 +79,46 @@ class DealsNotifier extends StateNotifier<DealsState> {
           }
         }
 
+        final selectedDays = filters['days'] as List<String>?;
+
+        if (selectedDays != null && selectedDays.isNotEmpty) {
+          final matchesDays = deal.validDaysOfWeek.any(selectedDays.contains);
+          if (!matchesDays) return false;
+        }
+
         //Popular filter
-        if ((filters['popular'] as bool ?? false) && !deal.isPopular) {
+        if ((filters['popular'] ?? false) == true && !deal.isPopular) {
           return false;
         }
 
         //Featured filter
-        if ((filters['featured'] as bool ?? false) && !deal.isFeatured) {
+        if ((filters['featured'] ?? false) == true && !deal.isFeatured) {
           return false;
         }
 
         //nearby filter
-        if ((filters['upcoming'] as bool ?? false) && !deal.isUpcoming) {
+        if ((filters['upcoming'] ?? false) == true && !deal.isUpcoming) {
           return false;
         }
 
-        
+        //Adults only
+        if ((filters['adultsOnly'] ?? false) == true && !deal.adultsOnly) {
+          return false;
+        }
+
+        //Pet Friendly
+        if ((filters['petFriendly'] ?? false) == true && !deal.petFriendly) {
+          return false;
+        }
+
+        //Delivery
+        if ((filters['delivery'] ?? false) == true && !deal.delivery) {
+          return false;
+        }
 
         return true;
       },
     ).toList();
-  }
-
-  void clearFilters() {
-    state = state.copyWith(activeFilters: {});
   }
 
   //Load Featured Deals

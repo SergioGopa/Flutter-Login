@@ -11,7 +11,16 @@
     "isTopRated": true,
     "isNearby": true,
     "categories": ["Mexican", "Tacos"],
-    "dealIds": ["d1", "d14"]   
+    "dealIds": ["d1", "d14"],
+    "openingHours": [
+      { "day": "Monday",    "windows": [ { "start": "11:00", "end": "22:00" } ] },
+      { "day": "Tuesday",   "windows": [ { "start": "11:00", "end": "22:00" } ] },
+      { "day": "Wednesday", "windows": [ { "start": "11:00", "end": "22:00" } ] },
+      { "day": "Thursday",  "windows": [ { "start": "11:00", "end": "18:00" } ] },
+      { "day": "Friday",    "windows": [ { "start": "11:00", "end": "23:59" } ] },
+      { "day": "Saturday",  "windows": [ { "start": "12:00", "end": "23:59" } ] },
+      { "day": "Sunday",    "windows": [ { "start": "12:00", "end": "21:00" } ] }
+    ]   
   },
   {
     "id": "r2",
@@ -25,7 +34,31 @@
     "isTopRated": true,
     "isNearby": false,
     "categories": ["Japanese", "Sushi"],
-    "dealIds": ["d2", "d8", "d15"]
+    "dealIds": ["d2", "d8", "d15"],
+    "openingHours": [
+      { "day": "Monday",    "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "22:30" }
+        ] },
+      { "day": "Tuesday",   "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "22:30" }
+        ] },
+      { "day": "Wednesday", "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "22:30" }
+        ] },
+      { "day": "Thursday",  "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "23:00" }
+        ] },
+      { "day": "Friday",    "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "23:30" }
+        ] },
+      { "day": "Saturday",  "windows": [ { "start": "12:00", "end": "23:30" } ] },
+      { "day": "Sunday",    "windows": [ { "start": "13:00", "end": "21:00" } ] }
+    ]
   },
   {
     "id": "r3",
@@ -39,7 +72,16 @@
     "isTopRated": false,
     "isNearby": true,
     "categories": ["Burgers", "Fast Food"],
-    "dealIds": ["d3", "d9"]
+    "dealIds": ["d3", "d9"],
+    "openingHours": [
+      { "day": "Monday",    "windows": [ { "start": "07:00", "end": "20:00" } ] },
+      { "day": "Tuesday",   "windows": [ { "start": "07:00", "end": "20:00" } ] },
+      { "day": "Wednesday", "windows": [ { "start": "07:00", "end": "20:00" } ] },
+      { "day": "Thursday",  "windows": [ { "start": "07:00", "end": "21:00" } ] },
+      { "day": "Friday",    "windows": [ { "start": "07:00", "end": "21:00" } ] },
+      { "day": "Saturday",  "windows": [ { "start": "08:00", "end": "21:00" } ] },
+      { "day": "Sunday",    "windows": [ { "start": "08:00", "end": "18:00" } ] }
+    ]
   },
   {
     "id": "r4",
@@ -53,7 +95,16 @@
     "isTopRated": true,
     "isNearby": false,
     "categories": ["Italian", "Pasta"],
-    "dealIds": ["d4", "d10"]
+    "dealIds": ["d4", "d10"],
+    "openingHours": [
+      { "day": "Monday",    "windows": [ { "start": "12:00", "end": "22:00" } ] },
+      { "day": "Tuesday",   "windows": [ { "start": "10:00", "end": "22:00" } ] },
+      { "day": "Wednesday", "windows": [ { "start": "10:00", "end": "22:00" } ] },
+      { "day": "Thursday",  "windows": [ { "start": "10:00", "end": "23:00" } ] },
+      { "day": "Friday",    "windows": [ { "start": "10:00", "end": "23:59" } ] },
+      { "day": "Saturday",  "windows": [ { "start": "12:00", "end": "23:59" } ] },
+      { "day": "Sunday",    "windows": [ { "start": "12:00", "end": "21:00" } ] }
+    ]   
   },
   {
     "id": "r5",
@@ -67,7 +118,31 @@
     "isTopRated": false,
     "isNearby": true,
     "categories": ["Italian", "Pizza"],
-    "dealIds": ["d5", "d11"]
+    "dealIds": ["d5", "d11"],
+    "openingHours": [
+      { "day": "Monday",    "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "22:30" }
+        ] },
+      { "day": "Tuesday",   "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "22:30" }
+        ] },
+      { "day": "Wednesday", "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "22:30" }
+        ] },
+      { "day": "Thursday",  "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "23:00" }
+        ] },
+      { "day": "Friday",    "windows": [
+          { "start": "12:00", "end": "15:00" },
+          { "start": "18:00", "end": "23:30" }
+        ] },
+      { "day": "Saturday",  "windows": [ { "start": "12:00", "end": "23:30" } ] },
+      { "day": "Sunday",    "windows": [ { "start": "13:00", "end": "21:00" } ] }
+    ]
   },
   {
     "id": "r6",
@@ -81,7 +156,16 @@
     "isTopRated": true,
     "isNearby": false,
     "categories": ["Desserts", "Bakery"],
-    "dealIds": ["d6", "d12"]
+    "dealIds": ["d6", "d12"],
+    "openingHours": [
+      { "day": "Monday",    "windows": [ { "start": "12:00", "end": "22:00" } ] },
+      { "day": "Tuesday",   "windows": [ { "start": "10:00", "end": "22:00" } ] },
+      { "day": "Wednesday", "windows": [ { "start": "10:00", "end": "22:00" } ] },
+      { "day": "Thursday",  "windows": [ { "start": "10:00", "end": "23:00" } ] },
+      { "day": "Friday",    "windows": [ { "start": "10:00", "end": "23:59" } ] },
+      { "day": "Saturday",  "windows": [ { "start": "12:00", "end": "23:59" } ] },
+      { "day": "Sunday",    "windows": [ { "start": "12:00", "end": "21:00" } ] }
+    ]   
   },
   {
     "id": "r7",
@@ -95,6 +179,15 @@
     "isTopRated": false,
     "isNearby": true,
     "categories": ["Drinks", "Juice Bar"],
-     "dealIds": ["d7", "d13"]
+     "dealIds": ["d7", "d13"],
+     "openingHours": [
+      { "day": "Monday",    "windows": [ { "start": "12:00", "end": "22:00" } ] },
+      { "day": "Tuesday",   "windows": [ { "start": "10:00", "end": "22:00" } ] },
+      { "day": "Wednesday", "windows": [ { "start": "10:00", "end": "22:00" } ] },
+      { "day": "Thursday",  "windows": [ { "start": "10:00", "end": "23:00" } ] },
+      { "day": "Friday",    "windows": [ { "start": "10:00", "end": "23:59" } ] },
+      { "day": "Saturday",  "windows": [ { "start": "12:00", "end": "23:59" } ] },
+      { "day": "Sunday",    "windows": [ { "start": "12:00", "end": "21:00" } ] }
+    ]   
   }
 ]

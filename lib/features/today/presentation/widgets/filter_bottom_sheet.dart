@@ -1,5 +1,6 @@
 import 'package:eisty/config/theme/theme.dart';
 import 'package:eisty/features/catalog/deals/presentation/providers/deals_provider.dart';
+import 'package:eisty/features/shared/presentation/widgets/widgets.dart';
 import 'package:eisty/features/today/presentation/providers/filters_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,8 +10,44 @@ class FilterBottomSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    const allowedCategories = [
+      "Mexican",
+      "Italian",
+      // "Japanese",
+      "Bar",
+      "Desserts",
+      "Pizza",
+      "Tacos"
+    ];
+    final dayLabels = {
+      "Monday": "L",
+      "Tuesday": "Ma",
+      "Wednesday": "Mi",
+      "Thursday": "J",
+      "Friday": "V",
+      "Saturday": "S",
+      "Sunday": "D",
+    };
+    final categories = [
+      // Image.asset("assets/images/topmenu/$imageUrl.png", width: 35, height: 35,)
+      {"label": "Postre", "icon": "assets/images/topmenu/ic_ice_cream.png"},
+      {"label": "Comida", "icon": "assets/images/topmenu/ic_burger.png"},
+      {"label": "Bar", "icon": "assets/images/topmenu/ic_soft_drink.png"},
+      {"label": "Pizza", "icon": "assets/images/topmenu/ic_pizza.png"},
+    ];
     final filters = ref.watch(filtersProvider);
     final notifier = ref.read(filtersProvider.notifier);
+    final dealState = ref.watch(dealsProvider);
+
+    final availableCategories = dealState.allDeals
+        .expand(
+          (deal) => deal.categories,
+        )
+        .where(
+          (category) => allowedCategories.contains(category),
+        )
+        .toSet()
+        .toList();
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -53,18 +90,34 @@ class FilterBottomSheet extends ConsumerWidget {
           ),
           Wrap(
             spacing: 10,
-            children: ["Postre", "Comida", "Bar", "Mexican", "Italian"].map(
-              (e) {
-                final selected = filters.categories.contains(e);
+            children: availableCategories.map(
+              (category) {
+                final selected = filters.categories.contains(category);
 
                 return ChoiceChip(
-                  label: Text(e),
+                  label: Text(category),
                   selected: selected,
-                  onSelected: (value) => notifier.toggleCategory(e),
+                  selectedColor: AppColors.rosaPrimario.withValues(alpha: 0.8),
+                  onSelected: (value) => notifier.toggleCategory(category),
                 );
               },
             ).toList(),
           ),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 16,
+            children: categories.map((c) {
+              final isSelected = filters.categories.contains(c['label']);
+              return SazanIconChip(
+                size: 12,
+                label: c['label']!,
+                iconPath: c['icon']!,
+                selected: isSelected,
+                onTap: () => notifier.toggleCategory(c['label']!),
+              );
+            }).toList(),
+          ),
+
           const SizedBox(
             height: 20,
           ),
@@ -89,14 +142,18 @@ class FilterBottomSheet extends ConsumerWidget {
           ),
           Wrap(
             spacing: 10,
-            children: ["L", "Ma", "Mi", "J", "V", "S", "D"].map(
+            runSpacing: 8,
+            children: dayLabels.entries.map(
               (e) {
-                final selected = filters.categories.contains(e);
+                final dayEng = e.key;
+                final dayLabel = e.value;
+                final selected = filters.days.contains(dayEng);
 
                 return ChoiceChip(
-                  label: Text(e),
+                  label: Text(dayLabel),
                   selected: selected,
-                  onSelected: (value) => notifier.toggleCategory(e),
+                  selectedColor: AppColors.rosaPrimario.withValues(alpha: 0.8),
+                  onSelected: (value) => notifier.toggleDay(dayEng),
                 );
               },
             ).toList(),
@@ -157,16 +214,37 @@ class FilterBottomSheet extends ConsumerWidget {
               label: Text("+18"),
               selected: filters.adultsOnly,
               onSelected: (value) => notifier.toggleAdultsOnly(),
+              selectedColor: AppColors.rosaPrimario.withValues(alpha: 0.8),
             ),
             FilterChip(
               label: Text("Pet Friendly"),
               selected: filters.petFriendly,
               onSelected: (value) => notifier.togglePetFriendly(),
+              selectedColor: AppColors.rosaPrimario.withValues(alpha: 0.8),
             ),
             FilterChip(
               label: Text("Delivery"),
               selected: filters.delivery,
               onSelected: (value) => notifier.toggleDelivery(),
+              selectedColor: AppColors.rosaPrimario.withValues(alpha: 0.8),
+            ),
+            FilterChip(
+              label: Text("Popular"),
+              selected: filters.popular,
+              onSelected: (value) => notifier.togglePopular(),
+              selectedColor: AppColors.rosaPrimario.withValues(alpha: 0.8),
+            ),
+            FilterChip(
+              label: Text("Featured"),
+              selected: filters.featured,
+              onSelected: (value) => notifier.toggleFeatured(),
+              selectedColor: AppColors.rosaPrimario.withValues(alpha: 0.8),
+            ),
+            FilterChip(
+              label: Text("Upcoming"),
+              selected: filters.upcoming,
+              onSelected: (value) => notifier.toggleUpcoming(),
+              selectedColor: AppColors.rosaPrimario.withValues(alpha: 0.8),
             ),
           ]),
           const SizedBox(
@@ -180,14 +258,17 @@ class FilterBottomSheet extends ConsumerWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25))),
               onPressed: () {
-                
                 ref.read(dealsProvider.notifier).applyFilters({
                   'categories': ref.read(filtersProvider).categories,
+                  'days':ref.read(filtersProvider).days,
+                  'openNow': ref.read(filtersProvider).openNow,
                   'validToday': ref.read(filtersProvider).validToday,
                   'popular': ref.read(filtersProvider).popular,
                   'featured': ref.read(filtersProvider).featured,
                   'upcoming': ref.read(filtersProvider).upcoming,
-
+                  'adultsOnly': ref.read(filtersProvider).adultsOnly,
+                  'petFriendly': ref.read(filtersProvider).petFriendly,
+                  'delivery': ref.read(filtersProvider).delivery,
                 });
                 Navigator.pop(context);
               },
